@@ -1,0 +1,33 @@
+/**
+ * Vitest global setup — ensure JWT secrets exist before any module imports env.
+ * Integration tests that hit Postgres use the same DATABASE_URL as local dev unless
+ * TEST_DATABASE_URL is provided.
+ */
+import { config as loadDotenv } from 'dotenv'
+
+loadDotenv()
+
+process.env.NODE_ENV ||= 'test'
+process.env.CSRF_PROTECTION = 'false'
+process.env.ENABLE_API_DOCS ||= 'true'
+// Force host-only cookies so supertest agents receive auth cookies (shell may export COOKIE_DOMAIN).
+process.env.COOKIE_DOMAIN = ''
+process.env.COOKIE_SECURE = 'false'
+process.env.JWT_ACCESS_SECRET ||= 'test-access-secret-min-32-characters-long!!'
+process.env.JWT_REFRESH_SECRET ||= 'test-refresh-secret-min-32-characters-long!'
+process.env.JWT_SALES_SECRET ||= 'test-wealthora-sales-access-secret-min-32!!'
+process.env.JWT_SALES_ISSUER ||= 'wealthora-sales'
+process.env.JWT_SALES_AUDIENCE ||= 'wealthora-sales'
+process.env.DATABASE_URL ||=
+  process.env.TEST_DATABASE_URL ||
+  'postgresql://meridian:meridian@localhost:5432/meridian?schema=public'
+process.env.EMAIL_TRANSPORT ||= 'console'
+process.env.APP_URL ||= 'http://localhost:3000'
+process.env.API_URL ||= 'http://localhost:4000'
+process.env.CORS_ORIGIN ||= 'http://localhost:3000'
+process.env.BCRYPT_ROUNDS ||= '10'
+if (!process.env.LOG_LEVEL || process.env.LOG_LEVEL === 'silent') {
+  process.env.LOG_LEVEL = 'error'
+}
+process.env.PAYMENT_WEBHOOK_ALLOW_UNSIGNED ||= 'true'
+process.env.PAYMENT_AUTO_CONFIRM_DEPOSITS ||= 'false'

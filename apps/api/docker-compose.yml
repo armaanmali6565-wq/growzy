@@ -1,0 +1,9 @@
+# Local API dependencies (legacy). Prefer root:
+#   docker compose up -d
+# for Postgres + Redis during development.
+services:
+  redis:
+    image: redis:7-alpine
+    ports:
+      - '6379:6379'
+    command: ['redis-server', '--appendonly', 'yes']

@@ -1,0 +1,929 @@
+import {
+  API_ROUTES,
+  type AuditLogEntry,
+  type Deposit,
+  type Trade,
+  type User,
+  type Withdrawal,
+  type DailyReturnRun,
+} from '@meridian/shared'
+
+import { apiClient } from './http'
+import type { AdminHealthSnapshot, PlatformCmsDocument, SearchHit } from '@/types/domain'
+
+/** One Financial Summary period payload from `/admin/dashboard/ops` (and custom period). */
+export type AdminFinancialPeriod = {
+  period: string
+  deposits: string
+  depositsCount: number
+  withdrawals: string
+  withdrawalsCount: number
+  profitDistributed: string
+  platformBalance: string
+  activeInvestments: string
+  pendingDeposits: number
+  pendingWithdrawals: number
+  referralDistributed?: string
+  referralDistributedCount?: number
+  referralClaimed?: string
+  referralClaimedCount?: number
+}
+
+export type AdminUserHistoryActivity = 'DEPOSIT' | 'PROFIT' | 'WITHDRAWAL' | 'REFERRAL'
+
+export type AdminUserHistoryPayload = {
+  user: { id: string; firstName: string; lastName: string; createdByAdminId?: string | null }
+  wallet: {
+    balance: string
+    available: string
+    deposited: string
+    profit: string
+    withdrawn: string
+    referralWallet: string
+  }
+  records: Array<{
+    id: string
+    activity: AdminUserHistoryActivity
+    amount: string
+    currency: 'USD'
+    occurredAt: string
+    note: string | null
+    reference: string | null
+  }>
+}
+
+export type AdminHistoricalImportSummary = {
+  deposits: number
+  depositTotal: string
+  withdrawals: number
+  withdrawalTotal: string
+  profitRecords: number
+  profitTotal: string
+  referralRecords: number
+  referralTotal: string
+  validRows: number
+  skippedRows: number
+  invalidRows: number
+  rows: number
+}
+
+export type AdminHistoricalImportRecord = {
+  id: string
+  importId: string
+  fileName: string
+  status: 'PREVIEW' | 'COMPLETED' | 'FAILED' | 'CANCELLED' | string
+  rowCount: number
+  validCount: number
+  invalidCount: number
+  skippedCount: number
+  importedCount: number
+  summary: AdminHistoricalImportSummary | Record<string, unknown>
+  createdAt: string
+  confirmedAt: string | null
+  completedAt: string | null
+  errorMessage: string | null
+  user: { id: string; name: string }
+  uploadedBy: { id: string; name: string; email: string }
+  preview?: {
+    ignoredUserIds?: boolean
+    user?: { id: string; name: string }
+    rows?: Array<{
+      rowNumber: number
+      activity: string
+      occurredAt: string
+      amount: string
+      orderId: string
+      outcome: string
+      skipReason: string | null
+    }>
+    invalid?: Array<{ rowNumber: number; reason: string }>
+  }
+  confirmation?: string
+}
+
+export type AdminHandoverMode = 'TEST_DATA_RESET' | 'FULL_HANDOVER_RESET'
+
+export type AdminHandoverPreview = {
+  mode: AdminHandoverMode
+  remove: {
+    users: number
+    wallets: number
+    deposits: number
+    withdrawals: number
+    ledgerEntries: number
+    transactions: number
+    balances: number
+    kycRecords: number
+    notifications: number
+    supportTickets: number
+    sessions: number
+    otherUserGenerated: number
+  }
+  preserve: {
+    staffUsers: number
+    historicalTrades: number
+    historicalDailyReturns: number
+    historicalMonths: number
+    yearsOfPerformance: number
+    historicalPeriodLabel: string
+    cmsDocuments: number
+    platformSettings: number
+    paymentMethods: number
+  }
+  alreadyClean: boolean
+  actorPreserved: true
+  warning: string
+}
+
+export type AdminHandoverVerification = {
+  customerCountsZero: boolean
+  orphanFinanceFks: Record<string, number>
+  orphanFinanceFksZero: boolean
+  actorStillPrivileged: boolean
+  staffUsersRemaining: number
+  historicalTradesUnchanged: boolean
+  historicalDailyReturnsUnchanged: boolean
+  historicalMonthsUnchanged: boolean
+  cmsDocumentsPreserved: boolean
+  platformSettingsPreserved: boolean
+  paymentMethodsPreserved: boolean
+  fullResetArtifacts: {
+    reportJobs: number
+    reconciliationRuns: number
+    orphanEmailOutbox: number
+    orphanWebhookEvents: number
+  } | null
+}
+
+export type AdminHandoverResetResult = {
+  mode: AdminHandoverMode
+  message: string
+  alreadyClean: boolean
+  backupPath: string | null
+  removed: AdminHandoverPreview['remove']
+  preserved: AdminHandoverPreview['preserve']
+  after: AdminHandoverPreview['remove']
+  historicalPerformance: {
+    years: number
+    tradingDays: number
+    trades: number
+    months: number
+    periodLabel: string
+  }
+  verification: AdminHandoverVerification
+}
+
+export const adminService = {
+  health: () => apiClient<AdminHealthSnapshot>(API_ROUTES.admin.health),
+
+  dashboard: () => apiClient<Record<string, unknown>>(API_ROUTES.admin.dashboard),
+
+  dashboardOps: () =>
+    apiClient<{
+      generatedAt: string
+      liveCards: Array<{
+        id: string
+        label: string
+        count: number
+        amount: string | null
+        changePct: number
+        href: string
+      }>
+      executiveKpis: Array<{
+        id: string
+        title: string
+        cards: Array<{
+          id: string
+          label: string
+          kind: 'count' | 'money' | 'percent'
+          value: string
+          href: string
+        }>
+      }>
+      periods: Record<string, AdminFinancialPeriod>
+      charts: {
+        depositsPerDay: Array<{ day: string; value: number }>
+        withdrawalsPerDay: Array<{ day: string; value: number }>
+        depositVsWithdrawal: Array<{ day: string; deposits: number; withdrawals: number }>
+        newUsers: Array<{ day: string; value: number }>
+        profitDistributed: Array<{ day: string; value: number }>
+        activeInvestorsGrowth: Array<{ day: string; value: number }>
+        kycApprovals: Array<{ day: string; value: number }>
+      }
+      totals: {
+        users: {
+          total: number
+          verified: number
+          active: number
+          suspended: number
+          deleted: number
+        }
+        deposits: {
+          total: number
+          approved: number
+          rejected: number
+          pending: number
+          amount: string
+          approvedAmount: string
+        }
+        withdrawals: {
+          total: number
+          approved: number
+          rejected: number
+          pending: number
+          paid: number
+          amount: string
+          paidAmount: string
+        }
+        kyc: { total: number; approved: number; rejected: number; pending: number }
+        profit: { daily: string; monthly: string; lifetime: string; lifetimeCount: number }
+        wallets: {
+          available: string
+          locked: string
+          invested: string
+          platformBalance: string
+        }
+      }
+      pending: {
+        deposits: Array<{
+          id: string
+          reference: string
+          amount: string
+          coin: string | null
+          network: string | null
+          method: string
+          createdAt: string
+          user: { id: string; name: string; email: string }
+        }>
+        withdrawals: Array<{
+          id: string
+          reference: string
+          amount: string
+          method: string
+          createdAt: string
+          user: { id: string; name: string; email: string }
+        }>
+        kyc: Array<{
+          id: string
+          userId: string
+          country: string
+          submittedAt: string
+          status: string
+          user: { id: string; name: string; email: string }
+        }>
+      }
+      activity: Array<{
+        id: string
+        kind: string
+        title: string
+        description: string | null
+        at: string
+      }>
+    }>(API_ROUTES.admin.dashboardOps),
+
+  /** Read-only custom Financial Summary range (inclusive UTC YYYY-MM-DD). */
+  dashboardOpsPeriod: (from: string, to: string) =>
+    apiClient<AdminFinancialPeriod>(
+      `${API_ROUTES.admin.dashboardOpsPeriod}?from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}`,
+    ),
+
+  search: (q: string) =>
+    apiClient<{ hits: SearchHit[] }>(
+      `${API_ROUTES.admin.search}?q=${encodeURIComponent(q)}`,
+    ),
+
+  activity: (query?: { kind?: string; cursor?: string }) => {
+    const params = new URLSearchParams()
+    if (query?.kind) params.set('kind', query.kind)
+    if (query?.cursor) params.set('cursor', query.cursor)
+    const qs = params.toString()
+    return apiClient<{
+      items: Array<{
+        id: string
+        kind: string
+        title: string
+        description?: string | null
+        at: string
+      }>
+    }>(`${API_ROUTES.admin.activity}${qs ? `?${qs}` : ''}`)
+  },
+
+  generateReport: (body: {
+    type: string
+    from?: string
+    to?: string
+    format: 'CSV' | 'XLSX' | 'PDF' | 'JSON'
+    filters?: Record<string, string>
+  }) =>
+    apiClient<{ jobId: string; downloadUrl?: string | null; reference?: string }>(
+      API_ROUTES.admin.reports,
+      { method: 'POST', body },
+    ),
+
+  users: (query?: {
+    q?: string
+    cursor?: string
+    page?: number
+    limit?: number
+    status?: string
+    role?: string
+    kycStatus?: string
+    lookalike?: boolean
+  }) => {
+    const params = new URLSearchParams()
+    if (query?.q) params.set('q', query.q)
+    if (query?.cursor) params.set('cursor', query.cursor)
+    if (query?.page) params.set('page', String(query.page))
+    if (query?.limit) params.set('limit', String(query.limit))
+    if (query?.status) params.set('status', query.status)
+    if (query?.role) params.set('role', query.role)
+    if (query?.kycStatus) params.set('kycStatus', query.kycStatus)
+    if (query?.lookalike) params.set('lookalike', 'true')
+    const qs = params.toString()
+    return apiClient<{
+      items: User[]
+      nextCursor: string | null
+      pagination?: {
+        page: number
+        limit: number
+        total: number
+        totalPages: number
+        hasNext?: boolean
+      }
+    }>(`${API_ROUTES.admin.users}${qs ? `?${qs}` : ''}`)
+  },
+
+  deletedUsers: (query?: { q?: string; page?: number; limit?: number }) => {
+    const params = new URLSearchParams()
+    if (query?.q) params.set('q', query.q)
+    if (query?.page) params.set('page', String(query.page))
+    if (query?.limit) params.set('limit', String(query.limit))
+    const qs = params.toString()
+    return apiClient<{
+      items: Array<{
+        id: string
+        deletionRef: string | null
+        deletedUserId: string | null
+        displayName: string | null
+        username: string | null
+        email: string | null
+        deletedAt: string
+        deletedBy: {
+          id: string | null
+          name: string | null
+          email: string | null
+        }
+      }>
+      pagination: {
+        page: number
+        limit: number
+        total: number
+        totalPages: number
+        hasNext?: boolean
+      }
+    }>(`${API_ROUTES.admin.deletedUsers}${qs ? `?${qs}` : ''}`)
+  },
+
+  user: (id: string) => apiClient<User>(`${API_ROUTES.admin.users}/${id}`),
+
+  addUserNote: (id: string, note: string) =>
+    apiClient<User>(`${API_ROUTES.admin.users}/${id}/notes`, {
+      method: 'POST',
+      body: { note },
+    }),
+
+  deposits: (query?: { status?: string; q?: string; page?: number; limit?: number }) => {
+    const params = new URLSearchParams()
+    if (query?.status) params.set('status', query.status)
+    if (query?.q) params.set('q', query.q)
+    if (query?.page) params.set('page', String(query.page))
+    if (query?.limit) params.set('limit', String(query.limit))
+    const qs = params.toString()
+    return apiClient<{
+      items: Deposit[]
+      pagination?: {
+        page: number
+        limit: number
+        total: number
+        totalPages: number
+        hasNext?: boolean
+      }
+    }>(`${API_ROUTES.admin.deposits}${qs ? `?${qs}` : ''}`)
+  },
+
+  deposit: (id: string) => apiClient<Deposit>(`${API_ROUTES.admin.deposits}/${id}`),
+
+  reviewDeposit: (
+    id: string,
+    body: {
+      decision: 'APPROVE' | 'REJECT' | 'REQUEST_INFORMATION'
+      reason?: string
+      creditedAmount?: string
+    },
+  ) =>
+    apiClient<Deposit>(`${API_ROUTES.admin.deposits}/${id}/review`, {
+      method: 'POST',
+      body,
+      idempotencyKey: `dep-review-${id}-${body.decision}`,
+    }),
+
+  withdrawals: (query?: { status?: string; q?: string; page?: number; limit?: number }) => {
+    const params = new URLSearchParams()
+    if (query?.status) params.set('status', query.status)
+    if (query?.q) params.set('q', query.q)
+    if (query?.page) params.set('page', String(query.page))
+    if (query?.limit) params.set('limit', String(query.limit))
+    const qs = params.toString()
+    return apiClient<{
+      items: Withdrawal[]
+      pagination?: {
+        page: number
+        limit: number
+        total: number
+        totalPages: number
+        hasNext?: boolean
+      }
+    }>(`${API_ROUTES.admin.withdrawals}${qs ? `?${qs}` : ''}`)
+  },
+
+  withdrawal: (id: string) =>
+    apiClient<Withdrawal>(`${API_ROUTES.admin.withdrawals}/${id}`),
+
+  reviewWithdrawal: (
+    id: string,
+    body: { decision: 'APPROVE' | 'REJECT' | 'REQUEST_INFORMATION' | 'PAID'; reason?: string },
+  ) =>
+    apiClient<Withdrawal>(`${API_ROUTES.admin.withdrawals}/${id}/review`, {
+      method: 'POST',
+      body,
+      idempotencyKey: `wd-review-${id}-${body.decision}`,
+    }),
+
+  suspendUser: (id: string, reason?: string) =>
+    apiClient<User>(`${API_ROUTES.admin.users}/${id}/suspend`, {
+      method: 'POST',
+      body: { reason },
+    }),
+
+  createUser: (body: {
+    firstName: string
+    lastName: string
+    email: string
+    password: string
+    phone?: string
+    country?: string
+    referralCode?: string
+    accountOpened?: string
+  }) =>
+    apiClient<User>(API_ROUTES.admin.users, {
+      method: 'POST',
+      body,
+    }),
+
+  userHistory: (id: string) =>
+    apiClient<AdminUserHistoryPayload>(`${API_ROUTES.admin.users}/${id}/history`),
+
+  createUserHistory: (
+    id: string,
+    body: {
+      activity: AdminUserHistoryActivity
+      occurredAt: string
+      amount: string
+      currency: 'USD' | 'INR'
+      note?: string
+    },
+  ) =>
+    apiClient<AdminUserHistoryPayload>(`${API_ROUTES.admin.users}/${id}/history`, {
+      method: 'POST',
+      body,
+    }),
+
+  downloadHistoryImportTemplate: async (id: string, format: 'csv' | 'xlsx') => {
+    const { env } = await import('@/lib/env')
+    const filename =
+      format === 'csv'
+        ? 'wealthora-historical-import-sample.csv'
+        : 'wealthora-historical-import-sample.xlsx'
+    const response = await fetch(
+      `${env.NEXT_PUBLIC_API_URL}${API_ROUTES.admin.users}/${id}/history/import/template.${format}`,
+      { credentials: 'include', cache: 'no-store' },
+    )
+    if (!response.ok) {
+      throw new Error('Could not download the template.')
+    }
+    const blob = await response.blob()
+    const url = URL.createObjectURL(blob)
+    const link = document.createElement('a')
+    link.href = url
+    link.download = filename
+    document.body.appendChild(link)
+    link.click()
+    link.remove()
+    URL.revokeObjectURL(url)
+  },
+
+  previewHistoryImport: (id: string, file: File) => {
+    const body = new FormData()
+    body.append('file', file)
+    return apiClient<AdminHistoricalImportRecord>(
+      `${API_ROUTES.admin.users}/${id}/history/import/preview`,
+      { method: 'POST', body, timeoutMs: 180_000 },
+    )
+  },
+
+  historyImports: (id: string) =>
+    apiClient<{ items: AdminHistoricalImportRecord[] }>(
+      `${API_ROUTES.admin.users}/${id}/history/imports`,
+    ),
+
+  historyImport: (id: string, importId: string) =>
+    apiClient<AdminHistoricalImportRecord>(
+      `${API_ROUTES.admin.users}/${id}/history/imports/${importId}`,
+    ),
+
+  confirmHistoryImport: (id: string, importId: string) =>
+    apiClient<AdminHistoricalImportRecord>(
+      `${API_ROUTES.admin.users}/${id}/history/imports/${importId}/confirm`,
+      { method: 'POST', timeoutMs: 10 * 60_000 },
+    ),
+
+  cancelHistoryImport: (id: string, importId: string) =>
+    apiClient<AdminHistoricalImportRecord>(
+      `${API_ROUTES.admin.users}/${id}/history/imports/${importId}/cancel`,
+      { method: 'POST' },
+    ),
+
+  wipeUserHistory: (id: string) =>
+    apiClient<AdminUserHistoryPayload>(
+      `${API_ROUTES.admin.users}/${id}/history/wipe`,
+      { method: 'POST', timeoutMs: 10 * 60_000 },
+    ),
+
+  enableUser: (id: string, reason?: string) =>
+    apiClient<User>(`${API_ROUTES.admin.users}/${id}/enable`, {
+      method: 'POST',
+      body: { reason },
+    }),
+
+  updateUser: (
+    id: string,
+    body: Partial<{
+      firstName: string
+      lastName: string
+      phone: string | null
+      country: string | null
+      timezone: string
+      email: string
+      password: string
+      role: User['role']
+      staffRole: User['staffRole']
+    }>,
+  ) =>
+    apiClient<User & { revokedSessions?: number }>(`${API_ROUTES.admin.users}/${id}`, {
+      method: 'PATCH',
+      body,
+    }),
+
+  forceLogoutUser: (id: string) =>
+    apiClient<{ revokedSessions: number }>(`${API_ROUTES.admin.users}/${id}/force-logout`, {
+      method: 'POST',
+      body: {},
+    }),
+
+  deleteUser: (
+    id: string,
+    body: {
+      mode: 'soft' | 'hard'
+      reason?: string
+      confirmPhrase?: string
+      exportAcknowledged?: boolean
+    },
+  ) =>
+    apiClient<{ id: string; deleted?: boolean; deletionRef?: string } | User>(
+      `${API_ROUTES.admin.users}/${id}/delete`,
+      {
+        method: 'POST',
+        body,
+      },
+    ),
+
+  downloadUserDataExport: async (id: string) => {
+    const { env } = await import('@/lib/env')
+    const response = await fetch(
+      `${env.NEXT_PUBLIC_API_URL}${API_ROUTES.admin.userDataExport(id)}`,
+      { credentials: 'include', cache: 'no-store' },
+    )
+    if (!response.ok) {
+      const text = await response.text().catch(() => '')
+      throw new Error(text || 'Could not download user data export.')
+    }
+    const disposition = response.headers.get('Content-Disposition') ?? ''
+    const match = /filename="([^"]+)"/i.exec(disposition)
+    const filename = match?.[1] ?? `user-export-${id.slice(0, 8)}.zip`
+    const blob = await response.blob()
+    const url = URL.createObjectURL(blob)
+    const link = document.createElement('a')
+    link.href = url
+    link.download = filename
+    document.body.appendChild(link)
+    link.click()
+    link.remove()
+    URL.revokeObjectURL(url)
+    return { filename }
+  },
+
+  restoreUser: (id: string) =>
+    apiClient<User>(`${API_ROUTES.admin.users}/${id}/restore`, {
+      method: 'POST',
+      body: {},
+    }),
+
+  wallets: (query?: { q?: string }) => {
+    const params = new URLSearchParams()
+    if (query?.q) params.set('q', query.q)
+    const qs = params.toString()
+    return apiClient<{
+      items: Array<{
+        user: { id: string; email: string; firstName: string; lastName: string }
+        availableBalance: string
+        balance: string
+        lockedBalance: string
+      }>
+    }>(`${API_ROUTES.admin.wallets}${qs ? `?${qs}` : ''}`)
+  },
+
+  adjustWallet: (
+    userId: string,
+    body: { amount: string; direction: 'CREDIT' | 'DEBIT'; reason: string; idempotencyKey?: string },
+  ) => {
+    const idempotencyKey = body.idempotencyKey ?? crypto.randomUUID()
+    return apiClient(`${API_ROUTES.admin.wallets}/${userId}/adjust`, {
+      method: 'POST',
+      body: {
+        amount: body.amount,
+        direction: body.direction,
+        reason: body.reason,
+        idempotencyKey,
+      },
+      idempotencyKey,
+    })
+  },
+
+  performance: () =>
+    apiClient<{
+      summary: Record<string, unknown>
+      analytics: Record<string, unknown>
+      dailyReturns: Array<Record<string, unknown>>
+    }>(API_ROUTES.admin.performance),
+
+  trades: () => apiClient<{ items: Trade[] }>(API_ROUTES.admin.trades),
+
+  createTrade: (body: {
+    pair: string
+    direction: 'BUY' | 'SELL'
+    entryPrice: string
+    exitPrice?: string
+    returnPct?: string
+    tradeDate: string
+    adminNotes?: string
+  }) =>
+    apiClient<Trade>(API_ROUTES.admin.trades, {
+      method: 'POST',
+      body,
+    }),
+
+  publishTrade: (id: string) =>
+    apiClient<Trade>(`${API_ROUTES.admin.trades}/${id}/publish`, { method: 'POST' }),
+
+  returns: () => apiClient<{ items: DailyReturnRun[] }>(API_ROUTES.admin.returns),
+
+  publishReturn: (body: {
+    date: string
+    returnPct: string
+    idempotencyKey: string
+    preview?: boolean
+    notes?: string
+    returnBasis?: 'BALANCE' | 'INVESTED'
+  }) =>
+    apiClient<DailyReturnRun>(API_ROUTES.admin.returns, {
+      method: 'POST',
+      body,
+      idempotencyKey: body.idempotencyKey,
+      timeoutMs: body.preview ? 60_000 : 5 * 60_000,
+    }),
+
+  audit: (query?: { q?: string; cursor?: string }) => {
+    const params = new URLSearchParams()
+    if (query?.q) params.set('q', query.q)
+    if (query?.cursor) params.set('cursor', query.cursor)
+    const qs = params.toString()
+    return apiClient<{ items: AuditLogEntry[] }>(
+      `${API_ROUTES.admin.audit}${qs ? `?${qs}` : ''}`,
+    )
+  },
+
+  roles: () =>
+    apiClient<{
+      items: Array<{ roleKey: string; label: string; permissions: string[] }>
+      matrix: {
+        permissions: string[]
+        roles: Array<{ roleKey: string; label: string }>
+        matrix: Record<string, Record<string, boolean>>
+      }
+    }>(API_ROUTES.admin.roles),
+
+  updateRoles: (
+    rows: Array<{ roleKey: string; label: string; permissions: Record<string, boolean> }>,
+  ) => apiClient(API_ROUTES.admin.roles, { method: 'PUT', body: rows }),
+
+  backups: () =>
+    apiClient<{ lastAt: string; nextAt: string; points: Array<{ id: string; label: string }> }>(
+      API_ROUTES.admin.backups,
+    ),
+
+  createBackup: (scope: string) =>
+    apiClient<{ id: string }>(API_ROUTES.admin.backups, { method: 'POST', body: { scope } }),
+
+  handoverPreview: (mode: AdminHandoverMode) =>
+    apiClient<AdminHandoverPreview>(API_ROUTES.admin.handoverPreview, {
+      method: 'POST',
+      body: { mode },
+    }),
+
+  handoverReset: (body: {
+    mode: AdminHandoverMode
+    confirmationPhrase: string
+    confirm: true
+    backupAcknowledged: true
+  }) =>
+    apiClient<AdminHandoverResetResult>(API_ROUTES.admin.handoverReset, { method: 'POST', body }),
+
+  getPlatformCms: () => apiClient<PlatformCmsDocument>(API_ROUTES.cms.platform),
+
+  publishPlatformCms: (body: PlatformCmsDocument) =>
+    apiClient<PlatformCmsDocument>(`${API_ROUTES.cms.platform}/publish`, {
+      method: 'POST',
+      body,
+    }),
+
+  paymentMethods: () =>
+    apiClient<import('@meridian/shared').PaymentMethod[]>(API_ROUTES.admin.paymentMethods),
+
+  createPaymentMethod: (body: Record<string, unknown>) =>
+    apiClient<import('@meridian/shared').PaymentMethod>(API_ROUTES.admin.paymentMethods, {
+      method: 'POST',
+      body,
+    }),
+
+  updatePaymentMethod: (id: string, body: Record<string, unknown>) =>
+    apiClient<import('@meridian/shared').PaymentMethod>(`${API_ROUTES.admin.paymentMethods}/${id}`, {
+      method: 'PATCH',
+      body,
+    }),
+
+  deletePaymentMethod: (id: string) =>
+    apiClient(`${API_ROUTES.admin.paymentMethods}/${id}`, { method: 'DELETE' }),
+
+  reorderPaymentMethods: (orderedIds: string[]) =>
+    apiClient<import('@meridian/shared').PaymentMethod[]>(API_ROUTES.admin.paymentMethodsReorder, {
+      method: 'POST',
+      body: { orderedIds },
+    }),
+
+  walletAddresses: (paymentMethodId?: string) => {
+    const qs = paymentMethodId ? `?paymentMethodId=${encodeURIComponent(paymentMethodId)}` : ''
+    return apiClient<import('@meridian/shared').CryptoWalletAddress[]>(
+      `${API_ROUTES.admin.walletAddresses}${qs}`,
+    )
+  },
+
+  createWalletAddress: (body: Record<string, unknown>) =>
+    apiClient<import('@meridian/shared').CryptoWalletAddress>(API_ROUTES.admin.walletAddresses, {
+      method: 'POST',
+      body,
+    }),
+
+  updateWalletAddress: (id: string, body: Record<string, unknown>) =>
+    apiClient<import('@meridian/shared').CryptoWalletAddress>(
+      `${API_ROUTES.admin.walletAddresses}/${id}`,
+      { method: 'PATCH', body },
+    ),
+
+  deleteWalletAddress: (id: string) =>
+    apiClient(`${API_ROUTES.admin.walletAddresses}/${id}`, { method: 'DELETE' }),
+
+  referralSummary: () =>
+    apiClient<{
+      referralEnabled: boolean
+      referralPercent: string
+      referralUnlockDays: number
+      rewardCount: number
+      totalRewardCount: number
+      cancelledRewardCount: number
+      totalRewardAmount: string
+      lockedAmount: string
+      availableAmount: string
+      redeemedAmount: string
+      relationshipCount: number
+      referredUserCount: number
+      activeReferrerCount: number
+      referralDepositCount: number
+    }>(API_ROUTES.admin.referrals.summary),
+
+  referralRewards: (query?: {
+    q?: string
+    status?: string
+    from?: string
+    to?: string
+    page?: number
+    limit?: number
+  }) => {
+    const params = new URLSearchParams()
+    if (query?.q) params.set('q', query.q)
+    if (query?.status) params.set('status', query.status)
+    if (query?.from) params.set('from', query.from)
+    if (query?.to) params.set('to', query.to)
+    if (query?.page) params.set('page', String(query.page))
+    if (query?.limit) params.set('limit', String(query.limit))
+    const qs = params.toString()
+    return apiClient<{
+      items: AdminReferralRewardRow[]
+      pagination?: {
+        page: number
+        limit: number
+        total: number
+        totalPages: number
+        hasNext?: boolean
+      }
+    }>(`${API_ROUTES.admin.referrals.rewards}${qs ? `?${qs}` : ''}`)
+  },
+
+  referralReward: (id: string) =>
+    apiClient<AdminReferralRewardRow>(API_ROUTES.admin.referrals.reward(id)),
+
+  referralRelationships: (query?: {
+    q?: string
+    from?: string
+    to?: string
+    page?: number
+    limit?: number
+  }) => {
+    const params = new URLSearchParams()
+    if (query?.q) params.set('q', query.q)
+    if (query?.from) params.set('from', query.from)
+    if (query?.to) params.set('to', query.to)
+    if (query?.page) params.set('page', String(query.page))
+    if (query?.limit) params.set('limit', String(query.limit))
+    const qs = params.toString()
+    return apiClient<{
+      items: AdminReferralRelationshipRow[]
+      pagination?: {
+        page: number
+        limit: number
+        total: number
+        totalPages: number
+        hasNext?: boolean
+      }
+    }>(`${API_ROUTES.admin.referrals.relationships}${qs ? `?${qs}` : ''}`)
+  },
+}
+
+export type AdminReferralParty = {
+  id: string
+  email: string
+  firstName: string
+  lastName: string
+  referralCode: string | null
+  registeredAt?: string
+}
+
+export type AdminReferralRewardRow = {
+  id: string
+  status: 'LOCKED' | 'AVAILABLE' | 'REDEEMED' | 'CANCELLED'
+  sourceAmount: string
+  rewardAmount: string
+  percentApplied: string
+  unlockAt: string
+  redeemedAt: string | null
+  createdAt: string
+  creditedTransactionId: string | null
+  redeemedTransactionId: string | null
+  sourceDeposit: {
+    id: string
+    reference: string
+    amount: string
+    status: string
+  }
+  referrer: AdminReferralParty
+  referee: AdminReferralParty
+}
+
+export type AdminReferralRelationshipRow = {
+  id: string
+  status: 'ACTIVE' | 'INACTIVE'
+  referredUser: AdminReferralParty & { registeredAt: string }
+  referrer: AdminReferralParty | null
+  depositCount: number
+  rewardCount: number
+  totalGeneratedReward: string
+}

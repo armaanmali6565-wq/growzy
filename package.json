@@ -1,0 +1,45 @@
+{
+  "name": "meridian-fx",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Meridian FX — managed Forex investment platform (monorepo)",
+  "packageManager": "pnpm@9.15.0",
+  "engines": {
+    "node": ">=22.0.0",
+    "pnpm": ">=9.0.0"
+  },
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "start": "turbo run start",
+    "lint": "turbo run lint",
+    "lint:fix": "turbo run lint -- --fix",
+    "typecheck": "turbo run typecheck",
+    "test": "turbo run test",
+    "test:coverage": "pnpm --filter @meridian/api test:coverage && pnpm --filter @meridian/shared test:coverage",
+    "qa:report": "node scripts/generate-qa-report.mjs",
+    "format": "prettier --write \"**/*.{ts,tsx,js,mjs,json,css,md}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,js,mjs,json,css,md}\"",
+    "clean": "turbo run clean && rimraf node_modules",
+    "render:build:api": "pnpm --filter @meridian/api... build",
+    "render:build:web": "pnpm --filter @meridian/web... build",
+    "render:migrate": "pnpm --filter @meridian/api run db:migrate:deploy",
+    "render:start:api": "pnpm --filter @meridian/api run db:migrate:deploy && pnpm --filter @meridian/api start",
+    "render:start:web": "pnpm --filter @meridian/web start",
+    "render:start:worker": "pnpm --filter @meridian/api worker:start"
+  },
+  "devDependencies": {
+    "@meridian/config": "workspace:*",
+    "prettier": "^3.4.2",
+    "prettier-plugin-tailwindcss": "^0.6.9",
+    "rimraf": "^6.0.1",
+    "turbo": "^2.3.3",
+    "typescript": "^5.7.2"
+  },
+  "pnpm": {
+    "overrides": {
+      "tar": ">=7.5.19"
+    },
+    "onlyBuiltDependencies": ["bcrypt", "@prisma/client", "prisma", "esbuild"]
+  }
+}

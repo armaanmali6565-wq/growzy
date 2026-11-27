@@ -1,0 +1,192 @@
+# Wealthora Capital — Render Blueprint
+# https://render.com/docs/blueprint-spec
+#
+# Connect this GitHub repo in Render → New → Blueprint.
+# After first deploy, attach custom domains (see DEPLOYMENT.md).
+
+previewsEnabled: false
+
+databases:
+  - name: growzy-db
+    plan: basic-256mb
+    databaseName: growzy
+    user: growzy
+    postgresMajorVersion: "16"
+
+services:
+  # ── Express API ────────────────────────────────────────────────────────────
+  - type: web
+    name: growzy-api
+    runtime: node
+    branch: main
+    plan: starter
+    region: oregon
+    rootDir: .
+    buildCommand: corepack enable && corepack prepare pnpm@9.15.0 --activate && pnpm install --frozen-lockfile --prod=false && pnpm --filter @meridian/api run db:generate && pnpm --filter @meridian/api... build
+    preDeployCommand: pnpm --filter @meridian/api run db:migrate:deploy
+    startCommand: pnpm --filter @meridian/api run db:migrate:deploy && pnpm --filter @meridian/api start
+    healthCheckPath: /api/health
+    autoDeploy: true
+    disk:
+      name: growzy-uploads
+      mountPath: /data
+      sizeGB: 10
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: NODE_ENV
+        value: production
+      - key: APP_ENV
+        value: production
+      - key: APP_NAME
+        value: Wealthora Capital
+      - key: DATABASE_URL
+        fromDatabase:
+          name: growzy-db
+          property: connectionString
+      - key: APP_URL
+        value: https://wealthoracapital.net
+      - key: API_URL
+        value: https://api.wealthoracapital.net
+      - key: CORS_ORIGIN
+        value: https://wealthoracapital.net
+      - key: COOKIE_DOMAIN
+        value: .wealthoracapital.net
+      - key: COOKIE_SECURE
+        value: "true"
+      - key: JWT_ACCESS_SECRET
+        generateValue: true
+      - key: JWT_REFRESH_SECRET
+        generateValue: true
+      - key: JWT_ACCESS_EXPIRES_IN
+        value: 15m
+      - key: JWT_REFRESH_EXPIRES_IN
+        value: 7d
+      - key: JWT_ISSUER
+        value: growzy
+      - key: JWT_AUDIENCE
+        value: growzy-web
+      - key: EMAIL_TRANSPORT
+        value: resend
+      - key: RESEND_API_KEY
+        sync: false
+      - key: SMTP_FROM_NAME
+        value: Wealthora Capital
+      - key: SMTP_FROM_ADDRESS
+        sync: false
+      # Optional lane overrides — leave unset to use SMTP_FROM_ADDRESS (verified Resend sender)
+      - key: EMAIL_FROM_AUTH
+        sync: false
+      - key: EMAIL_FROM_SUPPORT
+        sync: false
+      - key: EMAIL_FROM_FINANCE
+        sync: false
+      - key: GOOGLE_CLIENT_ID
+        sync: false
+      - key: GOOGLE_CLIENT_SECRET
+        sync: false
+      - key: GOOGLE_CALLBACK_URL
+        sync: false
+      # Comma-separated Google emails for operator console (Google-only admin login)
+      - key: GOOGLE_SUPER_ADMIN_EMAILS
+        sync: false
+      - key: GOOGLE_ADMIN_EMAILS
+        sync: false
+      - key: CACHE_DRIVER
+        value: memory
+      - key: JOB_DRIVER
+        value: memory
+      - key: RATE_LIMIT_STORE
+        value: memory
+      - key: REDIS_REQUIRED
+        value: "false"
+      - key: ENABLE_API_DOCS
+        value: "true"
+      - key: CSRF_PROTECTION
+        value: "true"
+      - key: METRICS_ENABLED
+        value: "true"
+      - key: LOG_LEVEL
+        value: info
+      - key: EXIT_ON_UNCAUGHT
+        value: "true"
+      - key: REQUEST_TIMEOUT_MS
+        value: "30000"
+      # Persistent Disk is mounted at /data on growzy-api — UPLOAD_ROOT must stay under that mount.
+      - key: UPLOAD_ROOT
+        value: /data/uploads
+      - key: STORAGE_DRIVER
+        value: local
+      # For multi-instance / durable uploads set STORAGE_DRIVER=s3 and S3_* secrets in the dashboard.
+
+  # ── Next.js frontend ───────────────────────────────────────────────────────
+  # Must be a Web Service (NOT Static Site): App Router + middleware + SSR.
+  # Root Directory = repository root (empty). Do not set to apps/web.
+  - type: web
+    name: growzy-web
+    runtime: node
+    branch: main
+    plan: starter
+    region: oregon
+    rootDir: .
+    # Build runs next build + prepare-standalone (copies static/public into .next/standalone).
+    # Start uses node …/server.js via apps/web scripts/start-production.mjs — not `next start`.
+    buildCommand: corepack enable && corepack prepare pnpm@9.15.0 --activate && pnpm install --frozen-lockfile --prod=false && pnpm --filter @meridian/web... build
+    startCommand: pnpm --filter @meridian/web start
+    healthCheckPath: /api/version
+    autoDeploy: true
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: NODE_ENV
+        value: production
+      # Build-time public env (inlined into the Next.js bundle)
+      - key: NEXT_PUBLIC_API_URL
+        value: https://api.wealthoracapital.net/api/v1
+      - key: NEXT_PUBLIC_SITE_URL
+        value: https://wealthoracapital.net
+      - key: NEXT_PUBLIC_PLATFORM_NAME
+        value: Wealthora Capital
+      - key: NEXT_PUBLIC_SUPPORT_EMAIL
+        value: update@wealthoracapital.net
+      - key: NEXT_PUBLIC_ENABLE_REFERRALS
+        value: "false"
+      - key: NEXT_PUBLIC_ENABLE_ROUTE_GUARDS
+        value: "true"
+
+  # ── Optional BullMQ worker (enable after adding Redis + JOB_DRIVER=bullmq) ─
+  # Uncomment and set REDIS_URL / JOB_DRIVER=bullmq on API + worker.
+  # - type: worker
+  #   name: growzy-worker
+  #   runtime: node
+  #   plan: starter
+  #   region: oregon
+  #   rootDir: .
+  #   buildCommand: corepack enable && corepack prepare pnpm@9.15.0 --activate && pnpm install --frozen-lockfile --prod=false && pnpm --filter @meridian/api... build
+  #   startCommand: pnpm --filter @meridian/api worker:start
+  #   autoDeploy: true
+  #   envVars:
+  #     - key: NODE_ENV
+  #       value: production
+  #     - key: DATABASE_URL
+  #       fromDatabase:
+  #         name: growzy-db
+  #         property: connectionString
+  #     - key: JOB_DRIVER
+  #       value: bullmq
+  #     - key: CACHE_DRIVER
+  #       value: redis
+  #     - key: REDIS_REQUIRED
+  #       value: "true"
+  #     - key: REDIS_URL
+  #       sync: false
+  #     - key: JWT_ACCESS_SECRET
+  #       fromService:
+  #         name: growzy-api
+  #         type: web
+  #         envVarKey: JWT_ACCESS_SECRET
+  #     - key: JWT_REFRESH_SECRET
+  #       fromService:
+  #         name: growzy-api
+  #         type: web
+  #         envVarKey: JWT_REFRESH_SECRET

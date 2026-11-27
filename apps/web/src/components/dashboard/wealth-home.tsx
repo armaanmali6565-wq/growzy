@@ -1,0 +1,119 @@
+'use client'
+
+import { useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { ROUTES } from '@meridian/shared'
+import { toast } from 'sonner'
+
+import { ActivityTimeline } from '@/components/dashboard/activity-timeline'
+import { DashboardHomeSkeleton } from '@/components/dashboard/dashboard-home-skeleton'
+import { InvestmentStatus } from '@/components/dashboard/investment-status'
+import { LiveActivityFeed } from '@/components/dashboard/live-activity-feed'
+import { LivePerformanceChart } from '@/components/dashboard/live-performance-chart'
+import { MarketWidget } from '@/components/dashboard/market-widget'
+import { PortfolioAllocation } from '@/components/dashboard/portfolio-allocation'
+import { PortfolioHero } from '@/components/dashboard/portfolio-hero'
+import { PremiumProfileCard } from '@/components/dashboard/premium-profile-card'
+import { ProgressShareControls } from '@/components/dashboard/progress-share-controls'
+import { TradeCards } from '@/components/dashboard/trade-cards'
+import { WalletFab } from '@/components/dashboard/wallet-fab'
+import { WealthQuickActions } from '@/components/dashboard/wealth-quick-actions'
+import { RevealOnScroll } from '@/components/motion/reveal-on-scroll'
+import { usePrefersReducedMotion } from '@/hooks/use-reduced-motion'
+import { accountAccessMessage, canTransact, requiresKycOnboarding } from '@/lib/account-access'
+import { useSession } from '@/providers/session-provider'
+
+/** Premium investor home — wealth experience, not an admin grid. */
+export function WealthHome() {
+  const prefersReducedMotion = usePrefersReducedMotion()
+  const router = useRouter()
+  const { session } = useSession()
+  const allowed = canTransact(session?.user.kycStatus)
+  const access = accountAccessMessage(session?.user.kycStatus)
+  const [booting, setBooting] = useState(!prefersReducedMotion)
+
+  useEffect(() => {
+    if (prefersReducedMotion) {
+      setBooting(false)
+      return
+    }
+    const id = window.setTimeout(() => setBooting(false), 720)
+    return () => window.clearTimeout(id)
+  }, [prefersReducedMotion])
+
+  function tryDeposit() {
+    if (!allowed) {
+      toast.message(access.label, { description: access.description })
+      if (requiresKycOnboarding(session?.user.kycStatus)) {
+        router.push(ROUTES.auth.onboarding)
+      }
+      return
+    }
+    router.push(ROUTES.dashboard.deposit)
+  }
+
+  function tryWithdraw() {
+    if (!allowed) {
+      toast.message(access.label, { description: access.description })
+      if (requiresKycOnboarding(session?.user.kycStatus)) {
+        router.push(ROUTES.auth.onboarding)
+      }
+      return
+    }
+    router.push(ROUTES.dashboard.withdraw)
+  }
+
+  if (booting) {
+    return <DashboardHomeSkeleton />
+  }
+
+  return (
+    <>
+      <div className="space-y-6 lg:space-y-8">
+        <PortfolioHero onDeposit={tryDeposit} onWithdraw={tryWithdraw} />
+
+        <RevealOnScroll y={18} amount={0.12}>
+          <LivePerformanceChart />
+        </RevealOnScroll>
+
+        <RevealOnScroll y={16} delay={0.04}>
+          <WealthQuickActions />
+        </RevealOnScroll>
+
+        <div className="grid gap-5 lg:grid-cols-[1.4fr_1fr]">
+          <RevealOnScroll y={20}>
+            <TradeCards />
+          </RevealOnScroll>
+          <div className="space-y-5">
+            <RevealOnScroll y={16} delay={0.05}>
+              <InvestmentStatus />
+            </RevealOnScroll>
+            <RevealOnScroll y={16} delay={0.08}>
+              <PortfolioAllocation />
+            </RevealOnScroll>
+          </div>
+        </div>
+
+        <div className="grid gap-5 lg:grid-cols-[1fr_1.2fr_0.9fr]">
+          <RevealOnScroll y={18}>
+            <MarketWidget />
+          </RevealOnScroll>
+          <RevealOnScroll y={18} delay={0.05}>
+            <ActivityTimeline limit={5} showFilters={false} />
+          </RevealOnScroll>
+          <RevealOnScroll y={18} delay={0.08}>
+            <PremiumProfileCard />
+          </RevealOnScroll>
+        </div>
+
+        <RevealOnScroll y={14} amount={0.1}>
+          <ProgressShareControls />
+        </RevealOnScroll>
+      </div>
+
+      <LiveActivityFeed />
+
+      <WalletFab onDeposit={tryDeposit} onWithdraw={tryWithdraw} />
+    </>
+  )
+}

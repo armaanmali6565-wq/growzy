@@ -1,0 +1,161 @@
+/** Types for the public Historical Performance Center demo/backtest JSON. */
+
+export interface DemoBacktestDayStat {
+  date: string
+  returnPct: number
+}
+
+export interface DemoDashboardStats {
+  tradingDayCount: number
+  tradeCount: number
+  winCount: number
+  lossCount: number
+  winRatePct: number
+  positiveDayPct: number
+  avgMonthlyReturnPct: number
+  monthsInBand: number
+  monthCount: number
+  bestDay: DemoBacktestDayStat
+  worstDay: DemoBacktestDayStat
+  bestMonth?: { yearMonth: string; returnPct: number }
+  worstMonth?: { yearMonth: string; returnPct: number }
+  totalReturnPct: number
+  endingEquity: number
+  startingEquity?: number
+  simpleAnnualizedReturnPct?: number
+  returnModel?: 'simple' | string
+}
+
+export interface DemoMonthlyReturn {
+  yearMonth: string
+  year: number
+  month: number
+  label: string
+  returnPct: number
+  tradingDays: number
+  growthOf100?: number
+  inPresentationBand: boolean
+}
+
+export interface DemoYearlyReturn {
+  year: number
+  returnPct: number
+}
+
+export interface DemoEquityPoint {
+  date: string
+  equity: number
+  returnPct: number
+}
+
+export interface DemoChartsPayload {
+  meta: {
+    startDate: string
+    endDate: string
+    startingEquity: number
+    endingEquity: number
+    totalReturnPct: number
+    simpleAnnualizedReturnPct?: number
+    returnModel?: 'simple' | string
+    elapsedYears?: number
+    monthCount?: number
+    tradingDayCount?: number
+  }
+  equityCurve: DemoEquityPoint[]
+  monthlyReturns: Array<{
+    yearMonth: string
+    label: string
+    returnPct: number
+    tradingDays: number
+    growthOf100?: number
+    inPresentationBand: boolean
+  }>
+  yearlyReturns: DemoYearlyReturn[]
+}
+
+export interface DemoDailyReturn {
+  id: string
+  date: string
+  status: string
+  computedReturnPct: number
+  netReturnPct: number
+  tradeCount: number
+  winCount: number
+  lossCount: number
+  summary: string
+  publishedAt: string
+}
+
+export interface DemoTrade {
+  id: string
+  reference: string
+  tradeDate: string
+  pair: string
+  direction: 'BUY' | 'SELL' | string
+  strategy: string
+  risk: string
+  lotSize: number
+  entryPrice: number
+  exitPrice: number
+  stopLoss?: number
+  takeProfit?: number
+  openTime: string
+  closeTime: string
+  status: string
+  outcome: 'WIN' | 'LOSS' | string
+  returnPct: number
+  pips: number
+  isPublic: boolean
+  profitAmount?: number | null
+  lossAmount?: number | null
+  tradingDayId?: string
+  datasetVersion?: string
+  disclosure?: string
+  marketValidation?: {
+    provider: string
+    yahooSymbol?: string
+    granularity?: string
+    tradeDate?: string
+    priceSessionDate?: string
+    ohlc?: { open: number; high: number; low: number; close: number }
+    sameCandle?: boolean
+  }
+  idempotencyKey?: string
+}
+
+export interface DemoReportCatalogItem {
+  id: string
+  title: string
+  description: string
+  format: 'html' | 'pdf' | 'csv' | string
+  href: string
+  fileName: string
+  category?: string
+  /** In-app HTML preview URL (never triggers download). */
+  previewUrl?: string
+}
+
+export interface DemoReportPreview {
+  id: string
+  title: string
+  href: string
+  download: string
+}
+
+export interface DemoReportCatalog {
+  generatedAt: string
+  seed: string
+  range: { startDate: string; endDate: string }
+  disclaimer: string
+  reports: DemoReportCatalogItem[]
+  previews?: DemoReportPreview[]
+}
+
+export interface DemoBacktestBundle {
+  stats: DemoDashboardStats
+  charts: DemoChartsPayload
+  monthlyReturns: DemoMonthlyReturn[]
+  dailyReturns: DemoDailyReturn[]
+  trades: DemoTrade[]
+  reportCatalog: DemoReportCatalog
+}

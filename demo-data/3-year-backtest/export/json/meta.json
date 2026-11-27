@@ -1,0 +1,18 @@
+{
+  "dataset": "4-year-public-demo",
+  "version": 3,
+  "seed": "wealthora-4y-public-demo-v1",
+  "generatedAt": "2026-09-19T18:56:30.275Z",
+  "startDate": "2022-09-01",
+  "endDate": "2026-08-05",
+  "tradingDayCount": 1025,
+  "tradeCount": 3545,
+  "monthCount": 48,
+  "startingEquity": 100,
+  "endingEquity": 834.4,
+  "totalReturnPct": 734.4,
+  "simpleAnnualizedReturnPct": 183.6,
+  "returnModel": "simple",
+  "elapsedYears": 3.9261,
+  "disclaimer": "Synthetic demo data for UI presentation only. Not live trading history."
+}
