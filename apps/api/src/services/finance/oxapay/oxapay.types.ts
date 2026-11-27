@@ -1,4 +1,4 @@
-/** OxaPay invoice + payment-info shapes used by Wealthora (documented fields only). */
+/** OxaPay invoice + payment-info shapes used by Growzy Capital (documented fields only). */
 
 export const OXAPAY_PROVIDER = 'oxapay' as const
 

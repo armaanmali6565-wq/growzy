@@ -65,7 +65,7 @@ export function renderEmailTemplate(
       const link = appUrl(`/verify-email?token=${encodeURIComponent(v.token ?? '')}`)
       return {
         subject: `Verify your ${env.APP_NAME} email`,
-        text: `Hi ${v.firstName},\n\nVerify your email: ${link}\n\nExpires in 24 hours.\n\nWealthora will never ask for your password or OTP.`,
+        text: `Hi ${v.firstName},\n\nVerify your email: ${link}\n\nExpires in 24 hours.\n\nGrowzy Capital will never ask for your password or OTP.`,
         html: emailLayout({
           category: 'Security',
           title: 'Verify your email',
@@ -196,7 +196,7 @@ export function renderEmailTemplate(
             ['Withdrawal ID', v.withdrawalId ?? '—'],
             ['Expiry', '10 minutes'],
           ])}${highlightCard(
-            `<p style="margin:0;color:#D9A441;font-size:13px"><strong>Security warning:</strong> Wealthora staff will never ask for this code. If you did not initiate a withdrawal, secure your account now.</p>`,
+            `<p style="margin:0;color:#D9A441;font-size:13px"><strong>Security warning:</strong> Growzy Capital staff will never ask for this code. If you did not initiate a withdrawal, secure your account now.</p>`,
           )}`,
           ctas: [{ label: 'Secure account', href: secureAccountUrl(), variant: 'secondary' }],
         }),
@@ -512,7 +512,7 @@ export function renderEmailTemplate(
           )}${detailRows([
             ['Ticket number', v.reference ?? ''],
             ['Subject', v.subject ?? ''],
-            ['Agent', v.agentName ?? 'Wealthora Support'],
+            ['Agent', v.agentName ?? 'Growzy Capital Support'],
           ])}${highlightCard(
             `<p style="margin:0;color:#F2F4F7;font-size:14px;line-height:1.6;white-space:pre-wrap">${escapeHtml(v.message ?? '')}</p>`,
           )}`,
@@ -531,7 +531,7 @@ export function renderEmailTemplate(
       }
       const link = v.adminLink || `${env.APP_URL.replace(/\/$/, '')}/admin`
       return {
-        subject: `[Wealthora Alert] ${v.alertTitle}`,
+        subject: `[Growzy Capital Alert] ${v.alertTitle}`,
         text: `${v.alertTitle}\n\n${v.alertBody}${v.reference ? `\n\nRef: ${v.reference}` : ''}\n\nAdmin: ${link}`,
         html: emailLayout({
           category: 'System',
@@ -561,7 +561,7 @@ export function renderEmailTemplate(
             v.kind ?? 'Announcement',
             'info',
           )}${paragraph(`<span style="white-space:pre-wrap">${escapeHtml(v.body ?? '')}</span>`)}`,
-          ctas: [{ label: 'Open Wealthora', href: dashboardUrl() }],
+          ctas: [{ label: 'Open Growzy Capital', href: dashboardUrl() }],
         }),
       }
     case 'custom':

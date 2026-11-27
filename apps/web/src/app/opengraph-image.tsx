@@ -44,7 +44,7 @@ export default function OpenGraphImage() {
               fontWeight: 700,
             }}
           >
-            W
+            G
           </div>
           <div style={{ fontSize: 40, fontWeight: 650, letterSpacing: '-0.02em' }}>
             {SITE.wordmark.primary}
@@ -68,7 +68,7 @@ export default function OpenGraphImage() {
         </div>
 
         <div style={{ display: 'flex', color: '#C9A45C', fontSize: 20, fontWeight: 600 }}>
-          wealthoracapital.com
+          growzycapital.com
         </div>
       </div>
     ),

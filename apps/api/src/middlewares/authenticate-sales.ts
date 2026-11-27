@@ -8,7 +8,7 @@ import { unauthorized } from '../utils/errors.js'
 import type { NextFunction, Request, Response } from 'express'
 
 /**
- * Sales Portal auth only. Reads wealthora_sales_at. Never uses mfx_at
+ * Sales Portal auth only. Reads growzy_sales_at. Never uses mfx_at
  * and never calls the investor authenticate middleware.
  */
 export const authenticateSales = asyncHandler(async (req, _res, next) => {

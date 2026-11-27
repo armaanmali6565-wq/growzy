@@ -23,9 +23,9 @@ Previews: `docs/qa/email-previews/` (+ `desktop/`, `mobile/` shells)
 
 | Lane | Address | Result |
 |------|---------|--------|
-| Auth / Security | `update@wealthoracapital.net` | **PASS** |
-| Support / KYC | `update@wealthoracapital.net` | **PASS** |
-| Finance / Investment / Admin | `update@wealthoracapital.net` | **PASS** |
+| Auth / Security | `update@growzycapital.net` | **PASS** |
+| Support / KYC | `update@growzycapital.net` | **PASS** |
+| Finance / Investment / Admin | `update@growzycapital.net` | **PASS** |
 | Env overrides `EMAIL_FROM_*` | Documented in `.env.example` | **PASS** |
 
 ## Templates
@@ -91,10 +91,10 @@ Previews: `docs/qa/email-previews/` (+ `desktop/`, `mobile/` shells)
 ## Env to set on Render
 
 ```
-EMAIL_FROM_AUTH=update@wealthoracapital.net
-EMAIL_FROM_SUPPORT=update@wealthoracapital.net
-EMAIL_FROM_FINANCE=update@wealthoracapital.net
-SMTP_FROM_NAME=Wealthora Capital
+EMAIL_FROM_AUTH=update@growzycapital.net
+EMAIL_FROM_SUPPORT=update@growzycapital.net
+EMAIL_FROM_FINANCE=update@growzycapital.net
+SMTP_FROM_NAME=Growzy Capital
 ```
 
 Verify all three senders in Resend (or your ESP).

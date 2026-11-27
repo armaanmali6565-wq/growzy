@@ -424,7 +424,7 @@ export function OnboardingWizard() {
               <form className="space-y-4" noValidate onSubmit={form.handleSubmit(onSubmitDocs)}>
                 <p className="text-body-sm font-medium text-fg">Upload documents</p>
                 <p className="text-caption text-fg-subtle">
-                  Drag and drop, browse or use your camera. Files upload securely to Wealthora for review.
+                  Drag and drop, browse or use your camera. Files upload securely to Growzy Capital for review.
                 </p>
                 {submitError ? (
                   <Alert tone="danger" title="Could not submit">

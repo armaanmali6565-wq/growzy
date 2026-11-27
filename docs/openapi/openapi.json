@@ -14,7 +14,7 @@
   },
   "servers": [
     {
-      "url": "https://api.wealthoracapital.net",
+      "url": "https://api.growzycapital.net",
       "description": "Production"
     },
     {

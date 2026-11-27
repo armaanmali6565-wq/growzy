@@ -12,8 +12,8 @@ import {
   type ProgressShareLink,
 } from '@/services/progress-share.service'
 
-const SHARE_TEXT = "Today's earnings on Wealthora Capital."
-const FILE_NAME = 'wealthora-todays-earnings.png'
+const SHARE_TEXT = "Today's earnings on Growzy Capital."
+const FILE_NAME = 'growzy-todays-earnings.png'
 
 async function copyText(value: string): Promise<boolean> {
   try {
@@ -87,10 +87,10 @@ export function ProgressShareControls({
       if (typeof navigator !== 'undefined' && typeof navigator.share === 'function') {
         try {
           if (navigator.canShare?.({ files: [file] })) {
-            await navigator.share({ title: 'Wealthora Capital', text: SHARE_TEXT, files: [file] })
+            await navigator.share({ title: 'Growzy Capital', text: SHARE_TEXT, files: [file] })
             return
           }
-          await navigator.share({ title: 'Wealthora Capital', text: SHARE_TEXT, url: shareUrl })
+          await navigator.share({ title: 'Growzy Capital', text: SHARE_TEXT, url: shareUrl })
           return
         } catch (err) {
           if (err instanceof DOMException && err.name === 'AbortError') return

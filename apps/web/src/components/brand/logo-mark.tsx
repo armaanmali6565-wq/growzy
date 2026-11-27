@@ -5,7 +5,7 @@ import { cn } from '@/lib/cn'
 export type LogoTone = 'color' | 'mono' | 'light' | 'dark'
 
 /**
- * Wealthora mark — geometric “W” fused with growth bars, a security ring, and an AI node.
+ * Growzy Capital mark — geometric “W” fused with growth bars, a security ring, and an AI node.
  * Original SVG; no stock marks.
  */
 export function LogoMark({

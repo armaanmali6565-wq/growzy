@@ -2,7 +2,7 @@ import { env } from '@/lib/env'
 
 export const BRAND = {
   name: env.NEXT_PUBLIC_PLATFORM_NAME,
-  legalName: 'Wealthora Capital',
+  legalName: 'Growzy Capital',
   supportEmail: env.NEXT_PUBLIC_SUPPORT_EMAIL,
   siteUrl: env.NEXT_PUBLIC_SITE_URL,
   theme: {

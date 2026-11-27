@@ -39,7 +39,7 @@ async function bootstrap(): Promise<void> {
         uploadRoot: env.STORAGE_DRIVER === 'local' ? env.UPLOAD_ROOT : undefined,
         requestTimeoutMs: env.REQUEST_TIMEOUT_MS,
       },
-      'Wealthora API listening',
+      'Growzy Capital API listening',
     )
     recordSystemLog({
       level: 'info',

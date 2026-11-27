@@ -292,7 +292,7 @@ export function AdminBackupWorkspace() {
             type="button"
             variant="glass"
             onClick={() => {
-              downloadCsv('wealthora-faqs.csv', [
+              downloadCsv('growzy-faqs.csv', [
                 ['id', 'question', 'answer'],
                 ...state.faqs.map((f) => [f.id, f.question, f.answer]),
               ])
@@ -305,7 +305,7 @@ export function AdminBackupWorkspace() {
             type="button"
             variant="glass"
             onClick={() => {
-              downloadCsv('wealthora-reports.csv', [
+              downloadCsv('growzy-reports.csv', [
                 ['id', 'title', 'type', 'status', 'period'],
                 ...state.reportDocs.map((r) => [r.id, r.title, r.type, r.status, r.periodLabel]),
               ])
@@ -318,7 +318,7 @@ export function AdminBackupWorkspace() {
             type="button"
             variant="glass"
             onClick={() => {
-              downloadCsv('wealthora-testimonials.csv', [
+              downloadCsv('growzy-testimonials.csv', [
                 ['id', 'name', 'country', 'rating', 'enabled'],
                 ...state.testimonials.map((t) => [
                   t.id,

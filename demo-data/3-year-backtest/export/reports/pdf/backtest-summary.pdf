@@ -1,52 +1,47 @@
 %PDF-1.4
-1 0 obj<< /Type /Catalog /Pages 2 0 R >>endobj
-2 0 obj<< /Type /Pages /Kids [3 0 R] /Count 1 >>endobj
-3 0 obj<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>endobj
-4 0 obj<< /Length 564 >>stream
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 530 >>
+stream
 BT
-/F1 11 Tf
-50 780 Td
-14 TL
-/F1 16 Tf (4-Year Demo / Backtest Dataset) Tj
-T*
-/F1 11 Tf
-(Seed: wealthora-4y-public-demo-v1) Tj
-T*
-(Range: 2022-09-01 to 2026-08-05) Tj
-T*
-(Trading days: 1025) Tj
-T*
-(Trades: 3545) Tj
-T*
-(Avg monthly return: 15.3%) Tj
-T*
-(Months in 13-17% band: 48/48) Tj
-T*
-(Total return: 734.4%) Tj
-T*
-(Annualized simple return: 183.6%) Tj
-T*
-(Ending equity \(base 100, simple accumulation\): 834.4) Tj
-T*
-() Tj
-T*
-(DISCLAIMER: Synthetic demo data for UI presentation only.) Tj
-T*
-(Not live trading history. Do not import into production.) Tj
-T*
+/F1 12 Tf
+54 740 Td
+18 TL
+(4-Year Demo / Backtest Dataset) Tj
+T* (Seed: growzy-4y-public-demo-v1) Tj
+T* (Range: 2022-09-01 to 2026-08-05) Tj
+T* (Trading days: 1025) Tj
+T* (Trades: 3545) Tj
+T* (Avg monthly return: 15.3%) Tj
+T* (Months in 13-17% band: 48/48) Tj
+T* (Total return: 734.4%) Tj
+T* (Annualized simple return: 183.6%) Tj
+T* (Ending equity \(base 100, simple accumulation\): 834.4) Tj
+T* (DISCLAIMER: Synthetic demo data for UI presentation only.) Tj
+T* (Not live trading history. Do not import into production.) Tj
 ET
 endstream
 endobj
-5 0 obj<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
 xref
 0 6
 0000000000 65535 f 
 0000000009 00000 n 
-0000000056 00000 n 
-0000000111 00000 n 
-0000000235 00000 n 
-0000000848 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000241 00000 n 
+0000000821 00000 n 
 trailer<< /Size 6 /Root 1 0 R >>
 startxref
-916
+891
 %%EOF

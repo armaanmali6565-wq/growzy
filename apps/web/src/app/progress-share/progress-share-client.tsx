@@ -80,7 +80,7 @@ export default function ProgressSharePage() {
       const url = URL.createObjectURL(blob)
       const a = document.createElement('a')
       a.href = url
-      a.download = 'wealthora-todays-earnings.png'
+      a.download = 'growzy-todays-earnings.png'
       document.body.appendChild(a)
       a.click()
       a.remove()
@@ -102,20 +102,20 @@ export default function ProgressSharePage() {
     if (!token || !shareUrl) return
     try {
       const blob = await progressShareService.fetchImageBlob({ token, kind: 'daily' })
-      const file = new File([blob], 'wealthora-todays-earnings.png', { type: 'image/png' })
+      const file = new File([blob], 'growzy-todays-earnings.png', { type: 'image/png' })
       if (typeof navigator.share === 'function') {
         try {
           if (navigator.canShare?.({ files: [file] })) {
             await navigator.share({
-              title: 'Wealthora Capital',
-              text: "Today's earnings on Wealthora Capital.",
+              title: 'Growzy Capital',
+              text: "Today's earnings on Growzy Capital.",
               files: [file],
             })
             return
           }
           await navigator.share({
-            title: 'Wealthora Capital',
-            text: "Today's earnings on Wealthora Capital.",
+            title: 'Growzy Capital',
+            text: "Today's earnings on Growzy Capital.",
             url: shareUrl,
           })
           return
@@ -134,7 +134,7 @@ export default function ProgressSharePage() {
     <main className="min-h-dvh bg-[radial-gradient(circle_at_top,#0A0D10_0%,#07090B_55%,#050708_100%)] px-4 py-5 text-[#F2F4F7] sm:px-6 sm:py-8">
       <div className="mx-auto w-full max-w-md space-y-4 sm:max-w-lg sm:space-y-5">
         <header className="space-y-1.5">
-          <p className="text-[11px] font-semibold tracking-[0.14em] text-[#C9A45C]">WEALTHORA CAPITAL</p>
+          <p className="text-[11px] font-semibold tracking-[0.14em] text-[#C9A45C]">GROWZY CAPITAL</p>
           <h1 className="text-xl font-semibold tracking-tight sm:text-2xl">Share My Progress</h1>
           <p className="text-sm text-[#9AA4B5]">Today&apos;s earnings, daily return and today&apos;s performance.</p>
         </header>
@@ -156,8 +156,8 @@ export default function ProgressSharePage() {
                 src={imageUrl}
                 alt={
                   snapshot
-                    ? `${snapshot.displayName} today's earnings on Wealthora Capital`
-                    : "Wealthora Capital today's earnings"
+                    ? `${snapshot.displayName} today's earnings on Growzy Capital`
+                    : "Growzy Capital today's earnings"
                 }
                 className="block h-auto w-full max-w-full rounded-2xl border border-white/10 shadow-[0_12px_40px_-16px_rgba(0,0,0,0.65)]"
                 width={1080}

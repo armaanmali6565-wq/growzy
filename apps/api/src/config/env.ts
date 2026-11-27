@@ -7,7 +7,7 @@ const envSchema = z.object({
   NODE_ENV: z.enum(['development', 'test', 'production']).default('development'),
   APP_ENV: z.enum(['development', 'staging', 'production', 'test']).default('development'),
   PORT: z.coerce.number().int().positive().default(4000),
-  APP_NAME: z.string().min(1).default('Wealthora Capital'),
+  APP_NAME: z.string().min(1).default('Growzy Capital'),
   APP_URL: z.string().url().default('http://localhost:3000'),
   API_URL: z.string().url().default('http://localhost:4000'),
 
@@ -21,8 +21,8 @@ const envSchema = z.object({
   JWT_AUDIENCE: z.string().default('meridian-fx-web'),
   /** Isolated Sales Portal JWT — never reuse JWT_ACCESS_SECRET. Required; no production default. */
   JWT_SALES_SECRET: z.string().min(32, 'JWT_SALES_SECRET must be at least 32 characters'),
-  JWT_SALES_ISSUER: z.string().default('wealthora-sales'),
-  JWT_SALES_AUDIENCE: z.string().default('wealthora-sales'),
+  JWT_SALES_ISSUER: z.string().default('growzy-sales'),
+  JWT_SALES_AUDIENCE: z.string().default('growzy-sales'),
 
   COOKIE_DOMAIN: z.string().optional().default(''),
   COOKIE_SECURE: z
@@ -50,7 +50,7 @@ const envSchema = z.object({
   SMTP_PORT: z.coerce.number().int().positive().default(1025),
   SMTP_USER: z.string().optional().default(''),
   SMTP_PASS: z.string().optional().default(''),
-  SMTP_FROM_NAME: z.string().default('Wealthora Capital'),
+  SMTP_FROM_NAME: z.string().default('Growzy Capital'),
   SMTP_FROM_ADDRESS: z.string().min(3).default('noreply@localhost'),
   /**
    * Optional per-lane From addresses. Empty → fall back to SMTP_FROM_ADDRESS

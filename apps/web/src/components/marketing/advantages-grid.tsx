@@ -34,7 +34,7 @@ export function AdvantagesGrid() {
   return (
     <Section
       id="why"
-      eyebrow="Why Wealthora"
+      eyebrow="Why Growzy Capital"
       title="What serious capital actually needs"
       description="Transparency, control and a desk that does not hide losing sessions."
       backdrop="grid"

@@ -122,7 +122,7 @@ export function Footer() {
 
         <div className="mt-12 border-t border-line/70 pt-8">
           <p className="text-caption text-fg-subtle">
-            © {year} {landing.companyName || 'Wealthora Capital'}. All rights reserved. Not
+            © {year} {landing.companyName || 'Growzy Capital'}. All rights reserved. Not
             financial advice — past performance does not guarantee future results.
           </p>
         </div>

@@ -18,7 +18,7 @@ export interface LogoProps {
   markClassName?: string
 }
 
-/** Wealthora logo — horizontal (default), stacked, mark-only, or wordmark. */
+/** Growzy Capital logo — horizontal (default), stacked, mark-only, or wordmark. */
 export function Logo({
   variant = 'horizontal',
   tone = 'color',

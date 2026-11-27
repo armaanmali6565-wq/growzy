@@ -180,7 +180,7 @@ export function PremiumEmailPreviewStudio({
         </div>
 
         <p className="text-caption text-fg-subtle">
-          Unique layout · {meta.description}. Responsive HTML with Wealthora branding, CTA, security
+          Unique layout · {meta.description}. Responsive HTML with Growzy Capital branding, CTA, security
           note, footer, and social links. Dark/light compatible via <code>color-scheme</code>.
         </p>
       </div>

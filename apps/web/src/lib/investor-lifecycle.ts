@@ -365,15 +365,15 @@ export function kycBadge(status: KycLifecycleStatus): { label: string; tone: 'wa
 
 const EMAIL_COPY: Record<EmailTemplateId, (meta?: Record<string, string>) => { subject: string; preview: string }> = {
   WELCOME: (m) => ({
-    subject: 'Welcome to Wealthora Capital',
+    subject: 'Welcome to Growzy Capital',
     preview: `Welcome ${m?.firstName ?? ''}. Your User ID is ${m?.userId ?? ''} and username is ${m?.username ?? ''}.`,
   }),
   VERIFY_EMAIL: () => ({
-    subject: 'Verify your Wealthora email',
+    subject: 'Verify your Growzy Capital email',
     preview: 'Your verification code was sent to your email. It expires in 10 minutes.',
   }),
   PASSWORD_RESET: () => ({
-    subject: 'Reset your Wealthora password',
+    subject: 'Reset your Growzy Capital password',
     preview: 'Your password reset code was sent to your email.',
   }),
   KYC_SUBMITTED: () => ({
@@ -413,10 +413,10 @@ const EMAIL_COPY: Record<EmailTemplateId, (meta?: Record<string, string>) => { s
     subject: 'Daily return credited',
     preview: `+${m?.pct ?? '0'}% credited · $${m?.amount ?? '0'} added to your wallet.`,
   }),
-  PASSWORD_CHANGED: () => ({ subject: 'Password changed', preview: 'Your Wealthora password was updated.' }),
-  EMAIL_CHANGED: () => ({ subject: 'Email changed', preview: 'Your Wealthora email was updated.' }),
+  PASSWORD_CHANGED: () => ({ subject: 'Password changed', preview: 'Your Growzy Capital password was updated.' }),
+  EMAIL_CHANGED: () => ({ subject: 'Email changed', preview: 'Your Growzy Capital email was updated.' }),
   NEW_LOGIN: (m) => ({
-    subject: 'New login to Wealthora',
+    subject: 'New login to Growzy Capital',
     preview: `New sign-in from ${m?.browser ?? 'a device'} · ${m?.country ?? ''}.`,
   }),
   TWO_FA_ENABLED: () => ({ subject: '2FA enabled', preview: 'Authenticator protection is now on.' }),

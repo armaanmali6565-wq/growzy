@@ -131,7 +131,7 @@ export const oxapayDepositService = {
         return_url: returnUrl,
         order_id: deposit.reference,
         email: body.email?.trim() || undefined,
-        description: `Wealthora deposit ${deposit.reference}`,
+        description: `Growzy Capital deposit ${deposit.reference}`,
         sandbox: env.OXAPAY_SANDBOX,
       })
     } catch (error) {

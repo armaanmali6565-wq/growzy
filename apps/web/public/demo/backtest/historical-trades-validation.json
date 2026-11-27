@@ -1,8 +1,8 @@
 {
-  "datasetVersion": "wealthora-historical-trades-v1",
-  "profitSeed": "wealthora-4y-public-demo-v1",
+  "datasetVersion": "growzy-historical-trades-v1",
+  "profitSeed": "growzy-4y-public-demo-v1",
   "provider": "yahoo-finance-chart",
-  "disclosure": "Reconstructed/backtest trade archive validated against historical Yahoo Finance OHLC. Not live executed fills. Canonical daily profit remains wealthora-4y-public-demo-v1.",
+  "disclosure": "Reconstructed/backtest trade archive validated against historical Yahoo Finance OHLC. Not live executed fills. Canonical daily profit remains growzy-4y-public-demo-v1.",
   "dateRange": {
     "start": "2022-09-01",
     "end": "2026-08-05"

@@ -3,7 +3,7 @@ import { ImageResponse } from 'next/og'
 export const size = { width: 32, height: 32 }
 export const contentType = 'image/png'
 
-/** Browser favicon — Wealthora geometric W mark. */
+/** Browser favicon — Growzy Capital geometric G mark. */
 export default function Icon() {
   return new ImageResponse(
     (
@@ -27,7 +27,7 @@ export default function Icon() {
             lineHeight: 1,
           }}
         >
-          W
+          G
         </div>
       </div>
     ),

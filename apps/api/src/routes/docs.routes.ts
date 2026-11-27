@@ -42,7 +42,7 @@ function swaggerHtml(bootstrapCsrfToken: string): string {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Wealthora API — Swagger UI</title>
+  <title>Growzy Capital API — Swagger UI</title>
   <link rel="stylesheet" href="https://unpkg.com/swagger-ui-dist@5.17.14/swagger-ui.css" />
   <style>
     body { margin: 0; background: #07090B; }
@@ -135,7 +135,7 @@ function redocHtml(): string {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Wealthora API — Redoc</title>
+  <title>Growzy Capital API — Redoc</title>
   <style>body { margin: 0; padding: 0; }</style>
 </head>
 <body>

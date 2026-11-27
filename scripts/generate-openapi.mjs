@@ -1,6 +1,6 @@
 /**
  * Generates docs/openapi/openapi.json and docs/openapi/openapi.yaml
- * covering every Wealthora Express API endpoint (Phases 1-6).
+ * covering every Growzy Capital Express API endpoint (Phases 1-6).
  *
  * Run: node scripts/generate-openapi.mjs
  */
@@ -2998,11 +2998,11 @@ const tags = [
 const doc = {
   openapi: '3.1.0',
   info: {
-    title: 'Wealthora API',
+    title: 'Growzy Capital API',
     version: '1.0.0',
-    summary: 'Wealthora Capital / Meridian FX investment platform API (Phases 1-6)',
+    summary: 'Growzy Capital / Meridian FX investment platform API (Phases 1-6)',
     description: [
-      '# Wealthora API',
+      '# Growzy Capital API',
       '',
       'Complete OpenAPI **3.1** specification for every Express endpoint.',
       '',
@@ -3039,11 +3039,11 @@ const doc = {
       '',
       'Regenerate: `node scripts/generate-openapi.mjs`',
     ].join('\n'),
-    contact: { name: 'Wealthora Engineering' },
+    contact: { name: 'Growzy Capital Engineering' },
     license: { name: 'Proprietary' },
   },
   servers: [
-    { url: 'https://api.wealthoracapital.net', description: 'Production' },
+    { url: 'https://api.growzycapital.net', description: 'Production' },
     { url: '/', description: 'Current host (relative)' },
     { url: 'http://localhost:4000', description: 'Local development' },
   ],
@@ -3290,7 +3290,7 @@ function buildPostman(openApiDoc) {
   }
   return {
     info: {
-      name: 'Wealthora API',
+      name: 'Growzy Capital API',
       description: openApiDoc.info.description,
       schema: 'https://schema.getpostman.com/json/collection/v2.1.0/collection.json',
       _postman_id: 'growzy-api-v1',
@@ -3311,7 +3311,7 @@ function buildPostman(openApiDoc) {
 function buildPostmanEnvironment() {
   return {
     id: 'growzy-local',
-    name: 'Wealthora Local',
+    name: 'Growzy Capital Local',
     values: [
       { key: 'baseUrl', value: 'http://localhost:4000', enabled: true, type: 'default' },
       { key: 'accessToken', value: '', enabled: true, type: 'secret' },
@@ -3332,7 +3332,7 @@ function buildInsomnia(openApiDoc) {
   resources.push({
     _id: workspaceId,
     _type: 'workspace',
-    name: 'Wealthora API',
+    name: 'Growzy Capital API',
     description: 'Generated from OpenAPI 3.1',
   })
   resources.push({

@@ -3,7 +3,7 @@
 import { LogoMark } from '@/components/brand/logo-mark'
 import { cn } from '@/lib/cn'
 
-/** Full-viewport loading state — Wealthora mark + soft branded pulse. */
+/** Full-viewport loading state — Growzy Capital mark + soft branded pulse. */
 export function LoadingScreen({
   label = 'Loading…',
   className,
@@ -37,7 +37,7 @@ export function LoadingScreen({
       </div>
       <div className="text-center">
         <p className="bg-gradient-to-r from-[#C4CBD3] to-[#F2F4F7] bg-clip-text text-caption font-medium text-transparent">
-          Wealthora
+          Growzy Capital
         </p>
         <p className="mt-1 text-body-sm text-fg-muted">{label}</p>
       </div>

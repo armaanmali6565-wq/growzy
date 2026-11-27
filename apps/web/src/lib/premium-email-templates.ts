@@ -1,5 +1,5 @@
 /**
- * Wealthora premium email template system.
+ * Growzy Capital premium email template system.
  * Each template is a unique responsive HTML layout — table-based for clients.
  * Dark/light compatible via color-scheme + dual-tone palette.
  */
@@ -41,11 +41,11 @@ export type PremiumEmailMeta = {
 }
 
 export const PREMIUM_EMAIL_CATALOG: PremiumEmailMeta[] = [
-  { key: 'welcome', name: 'Welcome', subject: 'Welcome to Wealthora Capital', category: 'Auth', accent: '#D4D9DF', description: 'Onboarding welcome' },
-  { key: 'verify', name: 'Verify Email', subject: 'Verify your Wealthora email', category: 'Auth', accent: '#AAB3BD', description: 'OTP + verify CTA' },
-  { key: 'login_alert', name: 'Login Alert', subject: 'New login to your Wealthora account', category: 'Security', accent: '#D9A441', description: 'Device / location alert' },
-  { key: 'password_reset', name: 'Password Reset', subject: 'Reset your Wealthora password', category: 'Security', accent: '#8FA8C0', description: 'Secure reset link' },
-  { key: 'password_changed', name: 'Password Changed', subject: 'Your Wealthora password was changed', category: 'Security', accent: '#3CCB91', description: 'Security confirmation' },
+  { key: 'welcome', name: 'Welcome', subject: 'Welcome to Growzy Capital', category: 'Auth', accent: '#D4D9DF', description: 'Onboarding welcome' },
+  { key: 'verify', name: 'Verify Email', subject: 'Verify your Growzy Capital email', category: 'Auth', accent: '#AAB3BD', description: 'OTP + verify CTA' },
+  { key: 'login_alert', name: 'Login Alert', subject: 'New login to your Growzy Capital account', category: 'Security', accent: '#D9A441', description: 'Device / location alert' },
+  { key: 'password_reset', name: 'Password Reset', subject: 'Reset your Growzy Capital password', category: 'Security', accent: '#8FA8C0', description: 'Secure reset link' },
+  { key: 'password_changed', name: 'Password Changed', subject: 'Your Growzy Capital password was changed', category: 'Security', accent: '#3CCB91', description: 'Security confirmation' },
   { key: 'kyc_started', name: 'KYC Started', subject: 'KYC submitted — under review', category: 'KYC', accent: '#8FA8C0', description: 'Progress timeline' },
   { key: 'kyc_approved', name: 'KYC Approved', subject: 'Account verified — start investing', category: 'KYC', accent: '#D4D9DF', description: 'Success celebration' },
   { key: 'kyc_rejected', name: 'KYC Rejected', subject: 'KYC needs your attention', category: 'KYC', accent: '#D9A441', description: 'Resubmit documents' },
@@ -54,17 +54,17 @@ export const PREMIUM_EMAIL_CATALOG: PremiumEmailMeta[] = [
   { key: 'withdrawal_pending', name: 'Withdrawal Requested', subject: 'Withdrawal request received', category: 'Money', accent: '#AAB3BD', description: 'Processing estimate' },
   { key: 'withdrawal_approved', name: 'Withdrawal Approved', subject: 'Withdrawal completed', category: 'Money', accent: '#3CCB91', description: 'Payout confirmation' },
   { key: 'daily_return', name: 'Daily Return Published', subject: 'Today’s return has been credited', category: 'Performance', accent: '#D4D9DF', description: 'Performance card' },
-  { key: 'weekly_performance', name: 'Weekly Performance', subject: 'Your weekly Wealthora performance report', category: 'Performance', accent: '#AAB3BD', description: 'Analytics summary' },
-  { key: 'monthly_statement', name: 'Monthly Statement', subject: 'Your Wealthora monthly statement', category: 'Performance', accent: '#89939E', description: 'Luxury statement' },
+  { key: 'weekly_performance', name: 'Weekly Performance', subject: 'Your weekly Growzy Capital performance report', category: 'Performance', accent: '#AAB3BD', description: 'Analytics summary' },
+  { key: 'monthly_statement', name: 'Monthly Statement', subject: 'Your Growzy Capital monthly statement', category: 'Performance', accent: '#89939E', description: 'Luxury statement' },
   { key: 'trade_published', name: 'Trade Published', subject: 'Today’s trades are live', category: 'Performance', accent: '#D4D9DF', description: 'Trade tape digest' },
-  { key: 'announcement', name: 'Announcement', subject: 'An update from Wealthora Capital', category: 'Marketing', accent: '#8FA8C0', description: 'Marketing banner' },
+  { key: 'announcement', name: 'Announcement', subject: 'An update from Growzy Capital', category: 'Marketing', accent: '#8FA8C0', description: 'Marketing banner' },
   { key: 'maintenance', name: 'Maintenance Notice', subject: 'Scheduled maintenance notice', category: 'Support', accent: '#64748B', description: 'Window + reason' },
   { key: 'referral_bonus', name: 'Referral Bonus', subject: 'Referral bonus credited 🎉', category: 'Marketing', accent: '#C9A45C', description: 'Celebration credit' },
   { key: 'support_reply', name: 'Support Ticket Reply', subject: 'New reply on your support ticket', category: 'Support', accent: '#8FA8C0', description: 'Conversation thread' },
   { key: 'account_suspended', name: 'Account Suspended', subject: 'Account suspended — compliance notice', category: 'Security', accent: '#E05C67', description: 'Appeal path' },
   { key: 'account_reactivated', name: 'Account Reactivated', subject: 'Welcome back — account reactivated', category: 'Security', accent: '#D4D9DF', description: 'Welcome back' },
   { key: 'twofa_enabled', name: '2FA Enabled', subject: 'Two-factor authentication enabled', category: 'Security', accent: '#8FA8C0', description: 'Security badge' },
-  { key: 'email_changed', name: 'Email Changed', subject: 'Your Wealthora email was changed', category: 'Security', accent: '#D9A441', description: 'Old → new email' },
+  { key: 'email_changed', name: 'Email Changed', subject: 'Your Growzy Capital email was changed', category: 'Security', accent: '#D9A441', description: 'Old → new email' },
   { key: 'profile_updated', name: 'Profile Updated', subject: 'Your profile was updated', category: 'Auth', accent: '#D4D9DF', description: 'Change summary' },
 ]
 
@@ -122,8 +122,8 @@ export const DEFAULT_EMAIL_SAMPLE: EmailSampleData = {
   maintenanceStart: '3 Aug 2026 · 02:00 GST',
   maintenanceEnd: '3 Aug 2026 · 04:00 GST',
   bonus: '50.00',
-  ctaUrl: 'https://wealthoracapital.com/dashboard',
-  supportEmail: 'update@wealthoracapital.net',
+  ctaUrl: 'https://growzycapital.com/dashboard',
+  supportEmail: 'update@growzycapital.net',
 }
 
 /* -------------------------------------------------------------------------- */
@@ -146,7 +146,7 @@ function logoMark(accent = '#D4D9DF') {
         <div style="width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,${accent},#C9A45C);box-shadow:0 8px 24px rgba(212,217,223,0.12);"></div>
       </td>
       <td style="padding-left:12px;vertical-align:middle;">
-        <div style="font-family:Inter,Segoe UI,Helvetica,Arial,sans-serif;font-size:18px;font-weight:700;letter-spacing:-0.02em;color:#07090B;">Wealthora</div>
+        <div style="font-family:Inter,Segoe UI,Helvetica,Arial,sans-serif;font-size:18px;font-weight:700;letter-spacing:-0.02em;color:#07090B;">Growzy Capital</div>
         <div style="font-family:Inter,Segoe UI,Helvetica,Arial,sans-serif;font-size:11px;color:#64748B;letter-spacing:0.08em;text-transform:uppercase;">Capital</div>
       </td>
     </tr>
@@ -191,14 +191,14 @@ function socialFooter(supportEmail: string) {
           · WhatsApp · Telegram
         </p>
         <p style="margin:0 0 14px;">
-          ${link('Twitter', 'https://twitter.com/wealthoracapital')}
+          ${link('Twitter', 'https://twitter.com/growzycapital')}
           ${link('LinkedIn', 'https://linkedin.com/company/growzy')}
           ${link('Instagram', 'https://instagram.com/growzy')}
           ${link('Discord', 'https://discord.gg/growzy')}
         </p>
         <p style="margin:0;font-family:Inter,Segoe UI,Helvetica,Arial,sans-serif;font-size:11px;line-height:1.5;color:#89939E;">
-          © ${new Date().getFullYear()} Wealthora Capital. Forex trading involves risk of loss.<br/>
-          You’re receiving this because you have a Wealthora account.
+          © ${new Date().getFullYear()} Growzy Capital. Forex trading involves risk of loss.<br/>
+          You’re receiving this because you have a Growzy Capital account.
         </p>
       </td>
     </tr>
@@ -221,7 +221,7 @@ function shell(opts: {
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="color-scheme" content="light dark" />
   <meta name="supported-color-schemes" content="light dark" />
-  <title>Wealthora</title>
+  <title>Growzy Capital</title>
   <style>
     :root { color-scheme: light dark; }
     @media (prefers-color-scheme: dark) {
@@ -355,14 +355,14 @@ function renderWelcome(d: EmailSampleData) {
   const accent = '#D4D9DF'
   return shell({
     accent,
-    preheader: 'Your Wealthora account is ready — verify, complete KYC, then deposit.',
+    preheader: 'Your Growzy Capital account is ready — verify, complete KYC, then deposit.',
     headerBg: `linear-gradient(135deg,#F2F4F7 0%,#E8EBEE 100%)`,
     headerHtml: `${illus('welcome', accent)}${h1('Welcome aboard')}`,
     supportEmail: d.supportEmail,
-    security: 'Wealthora will never ask for your password or 2FA codes by email.',
+    security: 'Growzy Capital will never ask for your password or 2FA codes by email.',
     bodyHtml: `
       ${greeting(d.firstName)}
-      ${p(`Welcome to <strong style="color:#07090B;">Wealthora Capital</strong>. Your permanent User ID is <strong>${escapeHtml(d.userId)}</strong> and username is <strong>${escapeHtml(d.username)}</strong>.`)}
+      ${p(`Welcome to <strong style="color:#07090B;">Growzy Capital</strong>. Your permanent User ID is <strong>${escapeHtml(d.userId)}</strong> and username is <strong>${escapeHtml(d.username)}</strong>.`)}
       ${p('Next: verify your email, complete KYC, then fund your wallet when you are ready.')}
       <div style="margin:28px 0;">${ctaButton('Getting Started', d.ctaUrl, accent)}</div>
       <table width="100%" style="margin-top:8px;"><tr>
@@ -383,7 +383,7 @@ function renderVerify(d: EmailSampleData) {
     headerBg: `linear-gradient(160deg,#F2F4F7 0%,#F2F4F7 100%)`,
     headerHtml: `${illus('shield', accent)}${h1('Verify your email')}`,
     supportEmail: d.supportEmail,
-    security: 'If you did not create a Wealthora account, you can safely ignore this message.',
+    security: 'If you did not create a Growzy Capital account, you can safely ignore this message.',
     bodyHtml: `
       ${greeting(d.firstName)}
       ${p('Confirm your email to unlock onboarding. Use the button below, or enter the one-time code.')}
@@ -409,7 +409,7 @@ function renderLoginAlert(d: EmailSampleData) {
     security: 'If this wasn’t you, secure your account immediately and contact support.',
     bodyHtml: `
       ${greeting(d.firstName)}
-      ${p('We noticed a sign-in to your Wealthora account from a device we don’t usually see.')}
+      ${p('We noticed a sign-in to your Growzy Capital account from a device we don’t usually see.')}
       ${kvCard([
         ['Device', d.device],
         ['Browser', d.browser],
@@ -428,10 +428,10 @@ function renderPasswordReset(d: EmailSampleData) {
     headerBg: `linear-gradient(135deg,#F2F4F7 0%,#E4E8ED 100%)`,
     headerHtml: `${illus('lock', accent)}${h1('Reset your password')}`,
     supportEmail: d.supportEmail,
-    security: 'This link expires in 30 minutes. Wealthora staff will never ask you to share it.',
+    security: 'This link expires in 30 minutes. Growzy Capital staff will never ask you to share it.',
     bodyHtml: `
       ${greeting(d.firstName)}
-      ${p('We received a request to reset the password for your Wealthora account.')}
+      ${p('We received a request to reset the password for your Growzy Capital account.')}
       <div style="margin:28px 0;">${ctaButton('Reset password', `${d.ctaUrl}/reset`, accent, '#FFFFFF')}</div>
       <p style="margin:0;text-align:center;font-family:Inter,Segoe UI,Helvetica,Arial,sans-serif;font-size:12px;color:#89939E;">Or use code <strong style="color:#4338CA;letter-spacing:0.12em;">${escapeHtml(d.otp)}</strong> · expires in 30 minutes</p>`,
   })
@@ -441,7 +441,7 @@ function renderPasswordChanged(d: EmailSampleData) {
   const accent = '#3CCB91'
   return shell({
     accent,
-    preheader: 'Your Wealthora password was changed successfully.',
+    preheader: 'Your Growzy Capital password was changed successfully.',
     headerBg: `linear-gradient(135deg,#F2F4F7 0%,#E4E8ED 100%)`,
     headerHtml: `${illus('check', accent)}${h1('Password changed')}`,
     supportEmail: d.supportEmail,
@@ -465,7 +465,7 @@ function renderKycStarted(d: EmailSampleData) {
     headerBg: `linear-gradient(135deg,#F2F4F7 0%,#E8EBEE 100%)`,
     headerHtml: `${illus('shield', accent)}${h1('KYC under review')}`,
     supportEmail: d.supportEmail,
-    security: 'Never send identity documents over chat apps — only upload inside Wealthora.',
+    security: 'Never send identity documents over chat apps — only upload inside Growzy Capital.',
     bodyHtml: `
       ${greeting(d.firstName)}
       ${p('We received your identity documents. Here’s where you are in the verification journey.')}
@@ -489,7 +489,7 @@ function renderKycApproved(d: EmailSampleData) {
     headerBg: `linear-gradient(160deg,#F2F4F7 0%,#E4E8ED 55%,#F2F4F7 100%)`,
     headerHtml: `${illus('check', accent)}${h1('Account verified')}`,
     supportEmail: d.supportEmail,
-    security: 'Only deposit using payment details shown inside your Wealthora wallet.',
+    security: 'Only deposit using payment details shown inside your Growzy Capital wallet.',
     bodyHtml: `
       ${greeting(d.firstName)}
       <div style="text-align:center;margin:8px 0 20px;">
@@ -529,7 +529,7 @@ function renderDepositPending(d: EmailSampleData) {
     headerBg: `linear-gradient(135deg,#F2F4F7 0%,#E4E8ED 100%)`,
     headerHtml: `${illus('money', accent)}${h1('Deposit request received')}`,
     supportEmail: d.supportEmail,
-    security: 'Never send funds to addresses shared outside the official Wealthora app.',
+    security: 'Never send funds to addresses shared outside the official Growzy Capital app.',
     bodyHtml: `
       ${greeting(d.firstName)}
       ${p('We received your deposit and queued it for operator review.')}
@@ -563,7 +563,7 @@ function renderDepositApproved(d: EmailSampleData) {
     security: 'Confirm the credit inside your wallet ledger before starting new deposits.',
     bodyHtml: `
       ${greeting(d.firstName)}
-      ${p('Your deposit has been approved and credited to your Wealthora wallet.')}
+      ${p('Your deposit has been approved and credited to your Growzy Capital wallet.')}
       <table width="100%" style="margin:20px 0;border-radius:18px;background:#07090B;overflow:hidden;">
         <tr><td align="center" style="padding:28px 20px;">
           <div style="font-family:Inter,Segoe UI,Helvetica,Arial,sans-serif;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#3CCB91;">Wallet updated</div>
@@ -664,7 +664,7 @@ function renderWeeklyPerformance(d: EmailSampleData) {
   const accent = '#AAB3BD'
   return shell({
     accent,
-    preheader: 'Your weekly Wealthora analytics report is ready.',
+    preheader: 'Your weekly Growzy Capital analytics report is ready.',
     headerBg: `linear-gradient(135deg,#0C4A6E 0%,#0369A1 100%)`,
     headerHtml: `
       <div style="color:#7DD3FC;font-family:Inter,Segoe UI,Helvetica,Arial,sans-serif;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;margin-top:18px;">Weekly report</div>
@@ -674,7 +674,7 @@ function renderWeeklyPerformance(d: EmailSampleData) {
     bodyHtml: `
       ${greeting(d.firstName)}
       ${illus('chart', accent)}
-      ${p('Here’s a concise look at your week with Wealthora.')}
+      ${p('Here’s a concise look at your week with Growzy Capital.')}
       ${kvCard([
         ['Week return', `+${d.returnPct}%`],
         ['Closing wallet', `$${d.balance}`],
@@ -698,7 +698,7 @@ function renderMonthlyStatement(d: EmailSampleData) {
   const accent = '#89939E'
   return shell({
     accent,
-    preheader: 'Your luxury monthly statement from Wealthora Capital.',
+    preheader: 'Your luxury monthly statement from Growzy Capital.',
     headerBg: `linear-gradient(135deg,#0F172A 0%,#1E293B 100%)`,
     headerHtml: `
       <div style="color:#CBD5E1;font-family:Inter,Segoe UI,Helvetica,Arial,sans-serif;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;margin-top:18px;">Monthly statement</div>
@@ -707,7 +707,7 @@ function renderMonthlyStatement(d: EmailSampleData) {
     security: 'Statements are final for the period shown. Contact support within 7 days for disputes.',
     bodyHtml: `
       ${greeting(d.firstName)}
-      ${p('Your official Wealthora statement for the period is ready.')}
+      ${p('Your official Growzy Capital statement for the period is ready.')}
       <table width="100%" style="margin:16px 0;border:1px solid #E2E8F0;border-radius:4px;">
         ${[
           ['Opening balance', '$10,120.00'],
@@ -771,7 +771,7 @@ function renderAnnouncement(d: EmailSampleData) {
   const accent = '#8FA8C0'
   return shell({
     accent,
-    preheader: 'An important update from Wealthora Capital.',
+    preheader: 'An important update from Growzy Capital.',
     headerBg: `linear-gradient(120deg,#07090B 0%,#0D1115 50%,#11161B 100%)`,
     headerHtml: `
       <div style="margin-top:20px;display:inline-block;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,0.15);color:#E4E8ED;font-family:Inter,Segoe UI,Helvetica,Arial,sans-serif;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;">Announcement</div>
@@ -797,7 +797,7 @@ function renderMaintenance(d: EmailSampleData) {
     security: 'During maintenance, deposits and withdrawals may be temporarily unavailable.',
     bodyHtml: `
       ${greeting(d.firstName)}
-      ${p('Wealthora will undergo scheduled maintenance. Trading ledgers remain safe; some actions will pause.')}
+      ${p('Growzy Capital will undergo scheduled maintenance. Trading ledgers remain safe; some actions will pause.')}
       ${kvCard([
         ['Start time', d.maintenanceStart],
         ['End time', d.maintenanceEnd],
@@ -818,7 +818,7 @@ function renderReferralBonus(d: EmailSampleData) {
     security: 'Referral abuse or self-referrals may reverse bonuses and restrict accounts.',
     bodyHtml: `
       ${greeting(d.firstName)}
-      ${p('Celebration time — a friend joined Wealthora with your invite.')}
+      ${p('Celebration time — a friend joined Growzy Capital with your invite.')}
       <table width="100%" style="margin:16px 0;border-radius:18px;background:#07090B;">
         <tr><td align="center" style="padding:26px;">
           <div style="font-family:Inter,Segoe UI,Helvetica,Arial,sans-serif;font-size:12px;color:#FCD34D;letter-spacing:0.12em;text-transform:uppercase;">Referral bonus</div>
@@ -843,7 +843,7 @@ function renderSupportReply(d: EmailSampleData) {
       ${p(`There’s a new message on ticket <strong>${escapeHtml(d.ticketId)}</strong>.`)}
       <table width="100%" style="margin:16px 0;border-radius:16px;border:1px solid #BAE6FD;background:#F2F4F7;">
         <tr><td style="padding:16px;">
-          <div style="font-family:Inter,Segoe UI,Helvetica,Arial,sans-serif;font-size:11px;color:#AAB3BD;font-weight:600;">WEALTHORA SUPPORT</div>
+          <div style="font-family:Inter,Segoe UI,Helvetica,Arial,sans-serif;font-size:11px;color:#AAB3BD;font-weight:600;">GROWZY CAPITAL SUPPORT</div>
           <p style="margin:8px 0 0;font-family:Inter,Segoe UI,Helvetica,Arial,sans-serif;font-size:14px;line-height:1.6;color:#0C4A6E;">${escapeHtml(d.replyPreview)}</p>
         </td></tr>
       </table>
@@ -855,7 +855,7 @@ function renderAccountSuspended(d: EmailSampleData) {
   const accent = '#E05C67'
   return shell({
     accent,
-    preheader: 'Your Wealthora account has been suspended — compliance notice.',
+    preheader: 'Your Growzy Capital account has been suspended — compliance notice.',
     headerBg: `linear-gradient(135deg,#FEF2F2 0%,#FEE2E2 100%)`,
     headerHtml: `${illus('warn', accent)}${h1('Account suspended')}`,
     supportEmail: d.supportEmail,
@@ -876,7 +876,7 @@ function renderAccountReactivated(d: EmailSampleData) {
   const accent = '#D4D9DF'
   return shell({
     accent,
-    preheader: 'Welcome back — your Wealthora account is active again.',
+    preheader: 'Welcome back — your Growzy Capital account is active again.',
     headerBg: `linear-gradient(135deg,#F2F4F7 0%,#E4E8ED 100%)`,
     headerHtml: `${illus('spark', accent)}${h1('Welcome back')}`,
     supportEmail: d.supportEmail,
@@ -902,7 +902,7 @@ function renderTwoFaEnabled(d: EmailSampleData) {
       <div style="text-align:center;margin:12px 0 20px;">
         <span style="display:inline-block;padding:10px 18px;border-radius:999px;border:1px solid #C7D2FE;background:#FFFFFF;font-family:Inter,Segoe UI,Helvetica,Arial,sans-serif;font-size:13px;font-weight:700;color:#4338CA;">🛡 AUTHENTICATOR ACTIVATED</span>
       </div>
-      ${p('Two-factor authentication is now protecting sign-ins to your Wealthora account.')}
+      ${p('Two-factor authentication is now protecting sign-ins to your Growzy Capital account.')}
       ${kvCard([['Enabled at', d.time], ['Device', d.device]])}
       <div style="margin:28px 0;">${ctaButton('View security settings', `${d.ctaUrl}/settings/security`, accent, '#FFFFFF')}</div>`,
   })
@@ -919,7 +919,7 @@ function renderEmailChanged(d: EmailSampleData) {
     security: 'If you did not request this change, contact support immediately from a trusted device.',
     bodyHtml: `
       ${greeting(d.firstName)}
-      ${p('The email on your Wealthora account was changed.')}
+      ${p('The email on your Growzy Capital account was changed.')}
       ${kvCard([
         ['Old email', d.oldEmail],
         ['New email', d.newEmail],
@@ -935,7 +935,7 @@ function renderProfileUpdated(d: EmailSampleData) {
   const accent = '#D4D9DF'
   return shell({
     accent,
-    preheader: 'Your Wealthora profile was updated successfully.',
+    preheader: 'Your Growzy Capital profile was updated successfully.',
     headerBg: `linear-gradient(135deg,#F2F4F7 0%,#E4E8ED 100%)`,
     headerHtml: `${illus('check', accent)}${h1('Profile updated')}`,
     supportEmail: d.supportEmail,

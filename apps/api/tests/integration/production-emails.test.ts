@@ -135,7 +135,7 @@ const FIXTURES: Record<string, Record<string, string>> = {
     monthlyProfit: '312.00 USD',
     date: '2026-08-05',
     sparkline: '0.3,0.5,0.4,0.7,0.6,0.9,0.85',
-    shareProgressUrl: 'https://wealthoracapital.net/progress-share?t=test-share-token',
+    shareProgressUrl: 'https://growzycapital.net/progress-share?t=test-share-token',
   },
   'investment-created': {
     firstName: 'Aisha',
@@ -162,7 +162,7 @@ const FIXTURES: Record<string, Record<string, string>> = {
     alertTitle: 'Deposit submitted',
     alertBody: 'investor@example.com submitted deposit DEP-TEST123 for 500.00 USD.',
     reference: 'DEP-TEST123',
-    adminLink: 'https://wealthoracapital.net/admin/deposits',
+    adminLink: 'https://growzycapital.net/admin/deposits',
     fieldsJson: JSON.stringify({
       'User name': 'Aisha Khan',
       'User ID': 'usr_demo_001',
@@ -181,7 +181,7 @@ const FIXTURES: Record<string, Record<string, string>> = {
   'platform-notification': {
     firstName: 'Aisha',
     title: 'Scheduled maintenance',
-    body: 'Wealthora will perform maintenance on Saturday 02:00–04:00 UTC. Trading and withdrawals pause during the window.',
+    body: 'Growzy Capital will perform maintenance on Saturday 02:00–04:00 UTC. Trading and withdrawals pause during the window.',
     kind: 'Maintenance',
   },
 }
@@ -192,12 +192,12 @@ describe('Production email system V2', () => {
   const desktopDir = path.resolve(outDir, 'desktop')
 
   it('resolves institutional sender lanes', () => {
-    expect(resolveSender('auth').email).toBe('update@wealthoracapital.net')
-    expect(resolveSender('support').email).toBe('update@wealthoracapital.net')
-    expect(resolveSender('finance').email).toBe('update@wealthoracapital.net')
-    expect(senderForCategory('Security').email).toBe('update@wealthoracapital.net')
-    expect(senderForCategory('KYC').email).toBe('update@wealthoracapital.net')
-    expect(senderForCategory('Finance').email).toBe('update@wealthoracapital.net')
+    expect(resolveSender('auth').email).toBe('update@growzycapital.net')
+    expect(resolveSender('support').email).toBe('update@growzycapital.net')
+    expect(resolveSender('finance').email).toBe('update@growzycapital.net')
+    expect(senderForCategory('Security').email).toBe('update@growzycapital.net')
+    expect(senderForCategory('KYC').email).toBe('update@growzycapital.net')
+    expect(senderForCategory('Finance').email).toBe('update@growzycapital.net')
   })
 
   it('renders every production template as premium responsive HTML', () => {
@@ -213,9 +213,9 @@ describe('Production email system V2', () => {
       expect(rendered.html).toContain('viewport')
       expect(rendered.html).toContain('max-width:560px')
       expect(rendered.html).toMatch(/@media only screen/)
-      expect(rendered.html).toContain('Wealthora')
+      expect(rendered.html).toContain('Growzy Capital')
       expect(rendered.html).toContain('will never ask for your password or OTP')
-      expect(rendered.html).toContain('update@wealthoracapital.net')
+      expect(rendered.html).toContain('update@growzycapital.net')
       expect(rendered.text.length).toBeGreaterThan(10)
 
       writeFileSync(path.join(outDir, `${key}.html`), rendered.html, 'utf8')

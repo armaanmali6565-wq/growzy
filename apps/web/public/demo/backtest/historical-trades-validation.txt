@@ -1,7 +1,7 @@
-Wealthora historical trade archive
+Growzy Capital historical trade archive
 ==================================
-Dataset: wealthora-historical-trades-v1
-Profit seed (unchanged): wealthora-4y-public-demo-v1
+Dataset: growzy-historical-trades-v1
+Profit seed (unchanged): growzy-4y-public-demo-v1
 Range: 2022-09-01 → 2026-08-05
 Provider: Yahoo Finance chart API (generation only)
 

@@ -93,7 +93,7 @@ async function mockUnmatchedSalesApiAsNotFound(page: Page) {
 async function grantSalesCookie(page: Page) {
   await page.context().addCookies([
     {
-      name: 'wealthora_sales_at',
+      name: 'growzy_sales_at',
       value: 'phase6-ui-dummy',
       url: 'http://localhost:3000',
     },
@@ -122,13 +122,13 @@ test.describe('Sales Portal login', () => {
     await page.goto('/sales/login')
     await expect(page.getByRole('heading', { name: /sales portal/i })).toBeVisible()
     const html = await page.content()
-    expect(html.toLowerCase()).not.toContain('wealthora_sales_at=')
+    expect(html.toLowerCase()).not.toContain('growzy_sales_at=')
     expect(html.toLowerCase()).not.toContain('access_token')
     const storage = await page.evaluate(() => ({
       local: { ...localStorage },
       session: { ...sessionStorage },
     }))
-    expect(JSON.stringify(storage)).not.toMatch(/wealthora_sales_|mfx_at|accessToken|refreshToken/)
+    expect(JSON.stringify(storage)).not.toMatch(/growzy_sales_|mfx_at|accessToken|refreshToken/)
   })
 })
 

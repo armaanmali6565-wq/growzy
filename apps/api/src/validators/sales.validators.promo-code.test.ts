@@ -4,7 +4,7 @@ import { createSalesmanSchema, updateSalesmanSchema, SALESMAN_CODE_REGEX } from 
 
 describe('salesman promo code validators', () => {
   it('accepts promotional codes with or without leading S', () => {
-    for (const code of ['S1', 'HARSH123', 'WEALTHORA', 'HARSH2026', 'HCAPITAL']) {
+    for (const code of ['S1', 'HARSH123', 'GROWZY', 'HARSH2026', 'HCAPITAL']) {
       expect(SALESMAN_CODE_REGEX.test(code)).toBe(true)
       expect(createSalesmanSchema.safeParse({ name: 'A', email: 'a@example.com', code }).success).toBe(true)
       expect(updateSalesmanSchema.safeParse({ code }).success).toBe(true)

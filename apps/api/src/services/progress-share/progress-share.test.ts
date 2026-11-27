@@ -72,7 +72,7 @@ function baseSnapshot(over: Partial<ProgressShareSnapshot> = {}): ProgressShareS
     todayEarnings: '42.50',
     dailyReturnPct: '0.850000',
     asOfDate: '2026-08-11',
-    brandName: 'Wealthora Capital',
+    brandName: 'Growzy Capital',
     portfolioHistory: [
       { label: 'STARTED', value: '5000.00' },
       { label: 'NOW', value: '5542.50' },

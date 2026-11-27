@@ -7,7 +7,7 @@ import { d, moneyDisplay } from '../../utils/money.js'
 import { isDemoInvestor } from '../demo-investor.js'
 import { mapTrade } from './trade.mappers.js'
 
-export const HISTORICAL_TRADES_DATASET = 'wealthora-historical-trades-v1'
+export const HISTORICAL_TRADES_DATASET = 'growzy-historical-trades-v1'
 export const HISTORICAL_TRADES_ARCHIVE_END = '2026-08-05'
 
 export type CanonicalDemoTrade = {

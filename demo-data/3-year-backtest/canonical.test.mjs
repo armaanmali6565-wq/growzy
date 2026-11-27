@@ -170,7 +170,7 @@ test('seeded dataset is reproducible (same monthly series as export)', () => {
     exp.map((m) => [m.yearMonth, m.returnPct]),
   )
   const meta = readJson(path.join(exportJson, 'meta.json'))
-  assert.equal(meta.seed, 'wealthora-4y-public-demo-v1')
+  assert.equal(meta.seed, 'growzy-4y-public-demo-v1')
 })
 
 test('CSV export matches canonical monthly returns', () => {

@@ -3,8 +3,8 @@ import type { CookieOptions } from 'express'
 import { env, isProduction } from './env.js'
 
 export const SALES_COOKIE_NAMES = {
-  accessToken: 'wealthora_sales_at',
-  refreshToken: 'wealthora_sales_rt',
+  accessToken: 'growzy_sales_at',
+  refreshToken: 'growzy_sales_rt',
 } as const
 
 const baseSalesCookieOptions = (): CookieOptions => ({

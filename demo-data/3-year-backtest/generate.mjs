@@ -24,7 +24,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const ROOT = path.resolve(__dirname)
 const EXPORT_ROOT = path.join(ROOT, 'export')
 
-const SEED = 'wealthora-4y-public-demo-v1'
+const SEED = 'growzy-4y-public-demo-v1'
 /** Keep the existing public-demo end date; extend history to 48 calendar months. */
 const END_DATE = new Date(Date.UTC(2026, 7, 5)) // 2026-08-05
 const START_DATE = new Date(Date.UTC(2022, 8, 1)) // 2022-09-01 → 48 months through Aug 2026
@@ -822,7 +822,7 @@ function writeHtmlReport(data) {
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>4-Year Demo Backtest — Wealthora Capital</title>
+  <title>4-Year Demo Backtest — Growzy Capital</title>
   <style>
     body { font-family: Georgia, "Times New Roman", serif; margin: 2rem; color: #1a1a1a; background: #f7f5f1; }
     h1 { font-size: 1.8rem; margin-bottom: 0.25rem; }

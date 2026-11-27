@@ -230,6 +230,6 @@ test('period reports match independently filtered canonical daily data', () => {
 
 test('report catalog seed matches the public demo seed', () => {
   const catalog = readJson(path.join(publicDir, 'report_catalog.json'))
-  assert.equal(catalog.seed, 'wealthora-4y-public-demo-v1')
+  assert.equal(catalog.seed, 'growzy-4y-public-demo-v1')
   assert.equal(JSON.stringify(catalog).includes('CAGR'), false)
 })

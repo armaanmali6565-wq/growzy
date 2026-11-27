@@ -9,8 +9,8 @@ import { env, isProduction } from './env.js'
 
 describe('sales cookie options', () => {
   it('uses isolated cookie names', () => {
-    expect(SALES_COOKIE_NAMES.accessToken).toBe('wealthora_sales_at')
-    expect(SALES_COOKIE_NAMES.refreshToken).toBe('wealthora_sales_rt')
+    expect(SALES_COOKIE_NAMES.accessToken).toBe('growzy_sales_at')
+    expect(SALES_COOKIE_NAMES.refreshToken).toBe('growzy_sales_rt')
   })
 
   it('keeps sales access token HttpOnly with SameSite=Lax', () => {

@@ -20,5 +20,5 @@
     <path d="M11.5 13.2 L16.4 27.2 L20 17.2 L23.6 27.2 L28.5 13.2" stroke="#fff" stroke-width="2.35" stroke-linecap="round" stroke-linejoin="round"/>
     <circle cx="28.5" cy="13.2" r="2.15" fill="#C9A45C"/>
   </g>
-  <text x="56" y="32" fill="url(#t)" font-family="system-ui,Segoe UI,sans-serif" font-size="24" font-weight="650" letter-spacing="-0.04em">Wealthora</text>
+  <text x="56" y="32" fill="url(#t)" font-family="system-ui,Segoe UI,sans-serif" font-size="22" font-weight="650" letter-spacing="-0.04em">Growzy Capital</text>
 </svg>

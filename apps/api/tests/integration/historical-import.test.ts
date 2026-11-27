@@ -93,7 +93,7 @@ describe('Admin historical spreadsheet import', () => {
     const xlsxRes = await agent.get(`/api/v1/admin/users/${target.id}/history/import/template.xlsx`)
     expect(xlsxRes.status).toBe(200)
     expect(String(xlsxRes.headers['content-type'])).toMatch(/spreadsheetml|octet-stream/)
-    expect(String(xlsxRes.headers['content-disposition'])).toContain('wealthora-historical-import-sample.xlsx')
+    expect(String(xlsxRes.headers['content-disposition'])).toContain('growzy-historical-import-sample.xlsx')
 
     const investorEmail = uniqueEmail('imp_inv')
     await request(app).post('/api/v1/auth/register').send({

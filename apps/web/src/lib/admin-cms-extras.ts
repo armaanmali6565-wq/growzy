@@ -198,7 +198,7 @@ export function createDefaultSystemHealth(): SystemHealthState {
   const now = new Date().toISOString()
   return {
     refreshedAt: now,
-    version: 'Wealthora Web 0.1.0',
+    version: 'Growzy Capital Web 0.1.0',
     environment: 'production',
     metrics: [],
   }
@@ -219,7 +219,7 @@ export function createDefaultPlatformCms(): PlatformCms {
       { id: 'contact', label: 'Contact', href: '/contact', enabled: true },
     ],
     dashboard: {
-      welcomeTitle: 'Your Wealthora portfolio',
+      welcomeTitle: 'Your Growzy Capital portfolio',
       welcomeSubtitle: 'Balances, returns and desk activity in one place.',
       portfolioEyebrow: 'Portfolio',
       emptyStateHint: 'Fund your wallet to start receiving published daily returns.',
@@ -244,7 +244,7 @@ export function createDefaultPlatformCms(): PlatformCms {
     },
     riskDisclaimer:
       'Forex and leveraged products involve significant risk of loss. Only invest capital you can afford to lose.',
-    contactBlurb: 'Reach Wealthora Capital for onboarding, KYC or operational questions.',
+    contactBlurb: 'Reach Growzy Capital for onboarding, KYC or operational questions.',
   }
 }
 
@@ -316,7 +316,7 @@ export function createDefaultCmsExtras(): CmsExtrasState {
     media: [
       {
         id: 'MED_logo',
-        name: 'Wealthora mark',
+        name: 'Growzy Capital mark',
         kind: 'logo',
         folder: 'Logos',
         mime: 'image/png',
@@ -357,7 +357,7 @@ export function createDefaultCmsExtras(): CmsExtrasState {
         title: 'August 2026 monthly statement',
         type: 'MONTHLY_PDF',
         periodLabel: 'Aug 2026',
-        fileName: 'wealthora-august-2026.pdf',
+        fileName: 'growzy-august-2026.pdf',
         url: '#',
         status: 'PUBLISHED',
         publishedAt: now,
@@ -369,7 +369,7 @@ export function createDefaultCmsExtras(): CmsExtrasState {
         title: 'Week 32 performance brief',
         type: 'WEEKLY_PDF',
         periodLabel: 'W32 2026',
-        fileName: 'wealthora-week-32.pdf',
+        fileName: 'growzy-week-32.pdf',
         url: '#',
         status: 'PUBLISHED',
         publishedAt: now,
@@ -390,10 +390,10 @@ export function createDefaultCmsExtras(): CmsExtrasState {
       },
     ],
     siteSeo: {
-      websiteName: 'Wealthora Capital',
+      websiteName: 'Growzy Capital',
       logoUrl: '/icon',
       faviconUrl: '/icon',
-      metaTitle: 'Wealthora — Forex investing with every trade on record',
+      metaTitle: 'Growzy Capital — Forex investing with every trade on record',
       metaDescription:
         'AI-assisted strategies, human-verified results and transparent historical performance.',
       googleAnalyticsId: '',
@@ -402,7 +402,7 @@ export function createDefaultCmsExtras(): CmsExtrasState {
       maintenanceMessage: 'We are upgrading ledger infrastructure. Back shortly.',
       supportHours: 'Mon–Fri 09:00–18:00 GST',
       supportPhone: '+971 50 000 0000',
-      supportEmail: 'update@wealthoracapital.net',
+      supportEmail: 'update@growzycapital.net',
       companyAddress: 'Dubai International Financial Centre, Dubai, UAE',
       defaultLanguage: 'en',
     },
@@ -469,7 +469,7 @@ export function pushRevision(
     label,
     snapshot: JSON.stringify(snapshot).slice(0, 12000),
     at: new Date().toISOString(),
-    admin: 'admin@wealthoracapital.com',
+    admin: 'admin@growzycapital.com',
     publishDate: opts?.publishDate ?? null,
   }
   return [row, ...revisions].slice(0, 120)

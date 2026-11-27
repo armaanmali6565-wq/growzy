@@ -85,7 +85,7 @@ export function SalesDashboardWorkspace() {
 
       <Card padded="md" variant="ghost">
         <p className="text-caption text-fg-muted">
-          This portal is a read-only view of existing Wealthora data. Deposits, withdrawals, and
+          This portal is a read-only view of existing Growzy Capital data. Deposits, withdrawals, and
           ledgers are not managed here.
         </p>
       </Card>

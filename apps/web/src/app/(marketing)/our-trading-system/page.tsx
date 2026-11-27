@@ -11,7 +11,7 @@ import { ArrowRight } from 'lucide-react'
 export const metadata: Metadata = {
   title: 'Our Trading System',
   description:
-    'How Wealthora generates published returns: AI scanning, human review, strategy selection, risk gates and daily distribution.',
+    'How Growzy Capital generates published returns: AI scanning, human review, strategy selection, risk gates and daily distribution.',
   alternates: { canonical: ROUTES.marketing.ourTradingSystem },
 }
 

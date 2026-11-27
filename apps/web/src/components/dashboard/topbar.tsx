@@ -74,7 +74,7 @@ export function Topbar() {
         <div className="min-w-0 flex-1">
           <p className="truncate text-[13px] font-medium leading-tight sm:text-body-sm">
             <span className="bg-gradient-to-r from-[#C4CBD3] via-[#D4D9DF] to-[#F2F4F7] bg-clip-text text-transparent">
-              Wealthora Capital
+              Growzy Capital
             </span>
           </p>
           <div className="mt-0.5 flex min-w-0 flex-wrap items-center gap-x-2 gap-y-0.5">

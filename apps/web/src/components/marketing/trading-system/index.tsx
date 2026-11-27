@@ -16,7 +16,7 @@ import { TechnologyStack } from './tech-stack'
 import { WhyWePublish } from './why-publish'
 import { TradingWorkflow } from './workflow'
 
-/** Premium deep-dive: how Wealthora’s trading system works — visual, interactive, demo-only. */
+/** Premium deep-dive: how Growzy Capital’s trading system works — visual, interactive, demo-only. */
 export function TradingSystemSection({
   showIntro = true,
 }: {

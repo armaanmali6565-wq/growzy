@@ -502,8 +502,8 @@ export const adminService = {
     const { env } = await import('@/lib/env')
     const filename =
       format === 'csv'
-        ? 'wealthora-historical-import-sample.csv'
-        : 'wealthora-historical-import-sample.xlsx'
+        ? 'growzy-historical-import-sample.csv'
+        : 'growzy-historical-import-sample.xlsx'
     const response = await fetch(
       `${env.NEXT_PUBLIC_API_URL}${API_ROUTES.admin.users}/${id}/history/import/template.${format}`,
       { credentials: 'include', cache: 'no-store' },

@@ -40,7 +40,7 @@ export function resolveAccountStatus(
     return {
       id: 'EMAIL_PENDING',
       label: 'Login required',
-      description: 'Sign in to view your Wealthora account.',
+      description: 'Sign in to view your Growzy Capital account.',
       nextActionLabel: 'Login',
       nextActionHref: ROUTES.auth.login,
       tone: 'neutral',
@@ -169,7 +169,7 @@ export function resolveAccountStatus(
     return {
       id: 'ACTIVE',
       label: 'Active',
-      description: 'Your Wealthora account is fully active.',
+      description: 'Your Growzy Capital account is fully active.',
       nextActionLabel: 'Open wallet',
       nextActionHref: ROUTES.dashboard.wallet,
       tone: 'profit',

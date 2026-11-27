@@ -152,7 +152,7 @@ export async function buildProgressShareSnapshot(userId: string): Promise<Progre
     todayEarnings: moneyDisplay(todayEarnings),
     dailyReturnPct,
     asOfDate,
-    brandName: 'Wealthora Capital',
+    brandName: 'Growzy Capital',
     portfolioHistory,
     intradayPerformance,
   }

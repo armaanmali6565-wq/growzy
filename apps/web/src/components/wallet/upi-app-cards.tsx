@@ -82,7 +82,7 @@ export function UpiAppCards({
             <span className="min-w-0 flex-1">
               <span className="block text-body-sm font-medium text-fg">{app.name}</span>
               <span className="block text-caption text-fg-subtle">
-                Opens {app.name} with Wealthora UPI prefilled
+                Opens {app.name} with Growzy Capital UPI prefilled
               </span>
             </span>
             <ExternalLink className="size-4 shrink-0 text-fg-subtle transition-colors group-hover:text-accent-300" aria-hidden />

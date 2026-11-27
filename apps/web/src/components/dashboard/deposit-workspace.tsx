@@ -285,7 +285,7 @@ export function DepositWorkspace() {
     <div className="space-y-6 lg:space-y-8">
       <PageHeader
         title="Deposit"
-        description="Fund your Wealthora wallet through secure crypto checkout."
+        description="Fund your Growzy Capital wallet through secure crypto checkout."
       />
       {isLoading ? (
         <Card variant="glass" className="p-6">

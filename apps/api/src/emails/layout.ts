@@ -45,16 +45,16 @@ function supportUrl(): string {
 }
 
 function siteUrl(): string {
-  return env.APP_URL.replace(/\/$/, '') || 'https://wealthoracapital.com'
+  return env.APP_URL.replace(/\/$/, '') || 'https://growzycapital.com'
 }
 
-const CONTACT_EMAIL = 'update@wealthoracapital.net'
+const CONTACT_EMAIL = 'update@growzycapital.net'
 
 function siteHost(): string {
   try {
     return new URL(siteUrl()).hostname.replace(/^www\./, '')
   } catch {
-    return 'wealthoracapital.com'
+    return 'growzycapital.com'
   }
 }
 
@@ -159,7 +159,7 @@ function renderCtas(ctas: EmailCta[]): string {
 }
 
 /**
- * Shared responsive email shell — dark luxury Wealthora branding.
+ * Shared responsive email shell — dark luxury Growzy Capital branding.
  */
 export function emailLayout(input: {
   category: EmailCategory
@@ -170,7 +170,7 @@ export function emailLayout(input: {
   /** @deprecated prefer ctas[] */
   cta?: EmailCta
 }): string {
-  const brand = env.APP_NAME || 'Wealthora Capital'
+  const brand = env.APP_NAME || 'Growzy Capital'
   const year = new Date().getFullYear()
   const preheader = input.preheader ?? input.title
   const ctas = input.ctas ?? (input.cta ? [input.cta] : [])
@@ -250,7 +250,7 @@ export function emailLayout(input: {
                 Need help? <a href="${escapeAttr(supportUrl())}" style="color:${COLORS.accent};text-decoration:none;font-weight:600">Contact Support</a>
               </p>
               <p style="margin:12px 0 0;padding:12px 14px;border-radius:10px;background:${COLORS.cardAlt};border:1px solid ${COLORS.border};font-size:12px;line-height:1.5;color:${COLORS.subtle}">
-                <strong style="color:${COLORS.warning}">Security notice:</strong> Wealthora will never ask for your password or OTP.
+                <strong style="color:${COLORS.warning}">Security notice:</strong> Growzy Capital will never ask for your password or OTP.
               </p>
               <p style="margin:16px 0 0;font-size:11px;color:${COLORS.subtle}">© ${year} ${escapeHtml(brand)}. All rights reserved. Sent from ${escapeHtml(sender.email)}.</p>
             </td>

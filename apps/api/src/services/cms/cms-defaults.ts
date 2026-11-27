@@ -8,7 +8,7 @@ export function defaultLandingContent(): Record<string, unknown> {
   const now = new Date().toISOString()
   return {
     logoUrl: '/icon',
-    companyName: 'Wealthora',
+    companyName: 'Growzy Capital',
     heroTitle: 'Forex investing with every trade on record',
     heroSubtitle:
       'AI-assisted strategies, human-verified results and transparent historical performance.',
@@ -24,19 +24,19 @@ export function defaultLandingContent(): Record<string, unknown> {
     riskDisclosure:
       'Forex trading involves substantial risk of loss. Past performance does not guarantee future results. Only invest capital you can afford to lose.',
     footerTagline: 'Transparent forex investing with every trade on record.',
-    supportEmail: 'update@wealthoracapital.net',
+    supportEmail: 'update@growzycapital.net',
     whatsapp: '+971500000000',
-    telegram: 'https://t.me/wealthoracapital',
+    telegram: 'https://t.me/growzycapital',
     social: {
-      twitter: 'https://twitter.com/wealthoracapital',
-      linkedin: 'https://linkedin.com/company/wealthoracapital',
-      facebook: 'https://facebook.com/wealthoracapital',
-      instagram: 'https://instagram.com/wealthoracapital',
-      discord: 'https://discord.gg/wealthoracapital',
+      twitter: 'https://twitter.com/growzycapital',
+      linkedin: 'https://linkedin.com/company/growzycapital',
+      facebook: 'https://facebook.com/growzycapital',
+      instagram: 'https://instagram.com/growzycapital',
+      discord: 'https://discord.gg/growzycapital',
     },
     homepagePopup: {
       enabled: false,
-      title: 'Welcome to Wealthora',
+      title: 'Welcome to Growzy Capital',
       body: 'New investors receive onboarding guidance after email verification.',
       cta: 'Get started',
     },
@@ -62,7 +62,7 @@ export function defaultPlatformContent(): Record<string, unknown> {
       { id: 'contact', label: 'Contact', href: '/contact', enabled: true },
     ],
     dashboard: {
-      welcomeTitle: 'Your Wealthora portfolio',
+      welcomeTitle: 'Your Growzy Capital portfolio',
       welcomeSubtitle: 'Balances, returns and desk activity in one place.',
       portfolioEyebrow: 'Portfolio',
       emptyStateHint: 'Fund your wallet to start receiving published daily returns.',
@@ -81,14 +81,14 @@ export function defaultPlatformContent(): Record<string, unknown> {
     },
     riskDisclaimer:
       'Forex and leveraged products involve significant risk of loss. Only invest capital you can afford to lose.',
-    contactBlurb: 'Reach Wealthora Capital for onboarding, KYC, or operational questions.',
+    contactBlurb: 'Reach Growzy Capital for onboarding, KYC, or operational questions.',
   }
 }
 
 export function defaultFaqs(): Array<{ question: string; answer: string; order: number }> {
   return [
     {
-      question: 'How does Wealthora generate returns?',
+      question: 'How does Growzy Capital generate returns?',
       answer: 'A discretionary forex desk trades verified strategies; daily results are published to investor wallets.',
       order: 0,
     },

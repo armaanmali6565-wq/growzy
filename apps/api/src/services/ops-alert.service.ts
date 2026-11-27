@@ -148,7 +148,7 @@ async function enrichDepositDetails(
 }
 
 function formatTelegramText(rows: Array<[string, string]>, title: string): string {
-  const lines = [`Wealthora · ${title}`, '']
+  const lines = [`Growzy Capital · ${title}`, '']
   for (const [k, v] of rows) {
     lines.push(`${k}: ${v}`)
   }

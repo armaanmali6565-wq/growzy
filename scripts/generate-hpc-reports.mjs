@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Build institutional Wealthora-branded HTML performance reports from existing
+ * Build institutional Growzy Capital-branded HTML performance reports from existing
  * demo/backtest JSON (does not regenerate trade/backtest data).
  *
  * Period-specific reports (daily / weekly / monthly / quarterly / yearly)
@@ -29,7 +29,7 @@ const meta = charts.meta
 const generatedAt = new Date().toISOString()
 const version = '2.2.0'
 const PRINCIPAL = 100
-const ARCHIVE_SEED = 'wealthora-4y-public-demo-v1'
+const ARCHIVE_SEED = 'growzy-4y-public-demo-v1'
 
 function simpleSum(arr) {
   return arr.reduce((a, r) => a + r.returnPct, 0)
@@ -387,7 +387,7 @@ function attr(attrs) {
 function shell(title, rid, period, pages, dataAttrs) {
   const body = pages
     .map((html, i) => {
-      return `<section class="report-page">${html}<div class="watermark">CONFIDENTIAL</div><footer class="footer"><span>Wealthora Capital · ${rid} · v${version}</span><span>Generated ${generatedAt.slice(0, 10)} · Page ${i + 1} of ${pages.length}</span></footer></section>`
+      return `<section class="report-page">${html}<div class="watermark">CONFIDENTIAL</div><footer class="footer"><span>Growzy Capital · ${rid} · v${version}</span><span>Generated ${generatedAt.slice(0, 10)} · Page ${i + 1} of ${pages.length}</span></footer></section>`
     })
     .join('\n')
   return `<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>${title}</title><style>${CSS}</style></head><body data-report-id="${rid}" data-period="${period}" data-version="${version}" data-generated="${generatedAt}" ${attr(dataAttrs)}>${body}</body></html>`
@@ -395,7 +395,7 @@ function shell(title, rid, period, pages, dataAttrs) {
 
 function cover({ title, periodLabel, period, rid }) {
   return `<div class="cover report-inner" style="min-height:calc(100vh - 120px);display:flex;flex-direction:column;justify-content:space-between">
-  <div class="brand"><div class="logo">W</div><div><div class="eyebrow">Wealthora Capital</div><div style="font-size:13px;color:var(--muted)">Public Performance Archive</div></div></div>
+  <div class="brand"><div class="logo">G</div><div><div class="eyebrow">Growzy Capital</div><div style="font-size:13px;color:var(--muted)">Public Performance Archive</div></div></div>
   <div>
     <span class="badge">Demo / Backtest Dataset</span>
     <h1>${title}</h1>
@@ -407,7 +407,7 @@ function cover({ title, periodLabel, period, rid }) {
       <div class="meta-card"><span>Report ID</span><strong>${rid}</strong></div>
     </div>
   </div>
-  <p class="prose">Version ${version} · Wealthora branding · Confidential watermark applies to all pages.</p>
+  <p class="prose">Version ${version} · Growzy Capital branding · Confidential watermark applies to all pages.</p>
 </div>`
 }
 
@@ -642,7 +642,7 @@ function closingPages(rid, slice) {
 <h2>Disclaimer</h2>
 <div class="panel prose">
   <p>This document is a <strong>synthetic demo / backtest presentation</strong>. It is not verified live trading history and must not be treated as a promise of future performance. Forex trading involves substantial risk of loss.</p>
-  <p>© Wealthora Capital · Confidential · For educational / product-demo use.</p>
+  <p>© Growzy Capital · Confidential · For educational / product-demo use.</p>
 </div>`,
   ]
 }

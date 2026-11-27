@@ -44,7 +44,7 @@ export function WhyChooseUs() {
   return (
     <Section
       id="why"
-      eyebrow={section?.eyebrow || 'Why Wealthora'}
+      eyebrow={section?.eyebrow || 'Why Growzy Capital'}
       title={section?.title || 'Built for verification'}
       description={
         section?.description || 'Compact reasons to inspect the platform — not marketing promises.'

@@ -43,8 +43,8 @@ test('dataset version, period, and import summary', () => {
   const report = readJson(path.join(publicDir, 'historical-trades-validation.json'))
   const trades = readJson(path.join(publicDir, 'trades.json'))
   const daily = readJson(path.join(publicDir, 'daily_returns.json'))
-  assert.equal(report.datasetVersion, 'wealthora-historical-trades-v1')
-  assert.equal(report.profitSeed, 'wealthora-4y-public-demo-v1')
+  assert.equal(report.datasetVersion, 'growzy-historical-trades-v1')
+  assert.equal(report.profitSeed, 'growzy-4y-public-demo-v1')
   assert.equal(report.dateRange.start, '2022-09-01')
   assert.equal(report.dateRange.end, '2026-08-05')
   assert.equal(report.totalTradingDays, daily.length)
@@ -53,7 +53,7 @@ test('dataset version, period, and import summary', () => {
   assert.equal(report.ok, true)
   assert.equal(daily[0].date, '2022-09-01')
   assert.equal(daily[daily.length - 1].date, '2026-08-05')
-  assert.ok(trades.every((t) => t.datasetVersion === 'wealthora-historical-trades-v1'))
+  assert.ok(trades.every((t) => t.datasetVersion === 'growzy-historical-trades-v1'))
 })
 
 test('1–4 trades per day with a varied distribution', () => {

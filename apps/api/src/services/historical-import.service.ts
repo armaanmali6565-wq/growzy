@@ -229,7 +229,7 @@ function mapImport(row: {
 export const historicalImportService = {
   templateCsv() {
     return {
-      filename: 'wealthora-historical-import-sample.csv',
+      filename: 'growzy-historical-import-sample.csv',
       contentType: 'text/csv; charset=utf-8',
       body: Buffer.from(buildTemplateCsv(), 'utf8'),
     }
@@ -237,7 +237,7 @@ export const historicalImportService = {
 
   templateXlsx() {
     return {
-      filename: 'wealthora-historical-import-sample.xlsx',
+      filename: 'growzy-historical-import-sample.xlsx',
       contentType: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
       body: buildTemplateXlsx(),
     }

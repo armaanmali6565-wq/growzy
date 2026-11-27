@@ -672,7 +672,7 @@ export const adminHealthService = {
 
     return {
       refreshedAt,
-      version: `Wealthora API ${APP_VERSION}`,
+      version: `Growzy Capital API ${APP_VERSION}`,
       environment: envLabel,
       uptimeSeconds: Math.floor(process.uptime()),
       metrics,

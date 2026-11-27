@@ -17,7 +17,7 @@ import { ROUTES } from '@meridian/shared'
 const INVESTOR_COOKIE = 'mfx_at'
 const ADMIN_COOKIE = 'mfx_at'
 /** Isolated Salesman access cookie. Never treat this as investor/admin `mfx_at`. */
-const SALES_COOKIE = 'wealthora_sales_at'
+const SALES_COOKIE = 'growzy_sales_at'
 
 const INVESTOR_PROTECTED = [
   ROUTES.dashboard.root,

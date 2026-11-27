@@ -32,8 +32,8 @@ const API_DATA_DIR = path.join(REPO_ROOT, 'apps/api/data/demo')
 const MARKET_CACHE = path.join(ROOT, 'market-cache/yahoo-daily.json')
 const HOURLY_CACHE = path.join(ROOT, 'market-cache/yahoo-hourly.json')
 
-export const DATASET_VERSION = 'wealthora-historical-trades-v1'
-const PROFIT_SEED = 'wealthora-4y-public-demo-v1'
+export const DATASET_VERSION = 'growzy-historical-trades-v1'
+const PROFIT_SEED = 'growzy-4y-public-demo-v1'
 const START_DATE = '2022-09-01'
 const END_DATE = '2026-08-05'
 const MICRO = 1_000_000n
@@ -734,7 +734,7 @@ async function generate() {
     profitSeed: PROFIT_SEED,
     provider: 'yahoo-finance-chart',
     disclosure:
-      'Reconstructed/backtest trade archive validated against historical Yahoo Finance OHLC. Not live executed fills. Canonical daily profit remains wealthora-4y-public-demo-v1.',
+      'Reconstructed/backtest trade archive validated against historical Yahoo Finance OHLC. Not live executed fills. Canonical daily profit remains growzy-4y-public-demo-v1.',
     dateRange: { start: START_DATE, end: END_DATE },
     totalTradingDays: daily.length,
     totalTrades: trades.length,
