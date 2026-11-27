@@ -135,7 +135,7 @@ export function HeroVisual({ className }: { className?: string }) {
                   domain={['dataMin', 'dataMax']}
                   ticks={ticks}
                   tickFormatter={formatChartYear}
-                  tick={{ fill: '#89939E', fontSize: 11 }}
+                  tick={{ fill: '#6B7C8F', fontSize: 11 }}
                   axisLine={false}
                   tickLine={false}
                   minTickGap={8}
@@ -144,7 +144,7 @@ export function HeroVisual({ className }: { className?: string }) {
                 />
                 <YAxis
                   domain={[`dataMin - ${yPad}`, `dataMax + ${yPad}`]}
-                  tick={{ fill: '#89939E', fontSize: 11 }}
+                  tick={{ fill: '#6B7C8F', fontSize: 11 }}
                   axisLine={false}
                   tickLine={false}
                   width={48}

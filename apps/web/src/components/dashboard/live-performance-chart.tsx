@@ -149,27 +149,27 @@ export function LivePerformanceChart() {
           <AreaChart data={data} margin={{ top: 8, right: 4, left: 0, bottom: 0 }}>
             <defs>
               <linearGradient id="equityFill" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor="#3CCB91" stopOpacity={0.28} />
-                <stop offset="70%" stopColor="#3CCB91" stopOpacity={0.04} />
-                <stop offset="100%" stopColor="#3CCB91" stopOpacity={0} />
+                <stop offset="0%" stopColor="#12D6A0" stopOpacity={0.35} />
+                <stop offset="70%" stopColor="#12D6A0" stopOpacity={0.04} />
+                <stop offset="100%" stopColor="#12D6A0" stopOpacity={0} />
               </linearGradient>
               <linearGradient id="equityStroke" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0%" stopColor="#23966D" />
-                <stop offset="50%" stopColor="#3CCB91" />
-                <stop offset="100%" stopColor="#D4D9DF" />
+                <stop offset="0%" stopColor="#5EF2C4" />
+                <stop offset="50%" stopColor="#12D6A0" />
+                <stop offset="100%" stopColor="#2AE8FF" />
               </linearGradient>
             </defs>
             <CartesianGrid stroke="rgb(255 255 255 / 0.04)" vertical={false} />
             <XAxis
               dataKey="date"
-              tick={{ fill: '#89939E', fontSize: 11 }}
+              tick={{ fill: '#6B7C8F', fontSize: 11 }}
               axisLine={false}
               tickLine={false}
               minTickGap={28}
             />
             <YAxis
               domain={[`dataMin - ${yPad}`, `dataMax + ${yPad}`]}
-              tick={{ fill: '#89939E', fontSize: 11 }}
+              tick={{ fill: '#6B7C8F', fontSize: 11 }}
               axisLine={false}
               tickLine={false}
               width={56}
@@ -179,7 +179,7 @@ export function LivePerformanceChart() {
                 return `$${Math.round(n)}`
               }}
             />
-            <Tooltip content={<ChartTooltip />} cursor={{ stroke: 'rgb(60 203 145 / 0.28)' }} />
+            <Tooltip content={<ChartTooltip />} cursor={{ stroke: 'rgb(18 214 160 / 0.35)' }} />
             <Area
               type="monotone"
               dataKey="balanceNum"
@@ -188,7 +188,7 @@ export function LivePerformanceChart() {
               fill="url(#equityFill)"
               animationDuration={900}
               animationEasing="ease-out"
-              activeDot={{ r: 5, fill: '#3CCB91', stroke: '#07090B', strokeWidth: 2 }}
+              activeDot={{ r: 5, fill: '#12D6A0', stroke: '#07131C', strokeWidth: 2 }}
             />
           </AreaChart>
         </ResponsiveContainer>

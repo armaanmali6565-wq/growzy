@@ -13,7 +13,7 @@ export default function AppleIcon() {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          background: '#07090B',
+          background: '#07131C',
           borderRadius: 40,
         }}
       >
@@ -25,11 +25,11 @@ export default function AppleIcon() {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            background: 'linear-gradient(135deg, #C4CBD3 0%, #D4D9DF 45%, #F2F4F7 100%)',
+            background: 'linear-gradient(135deg, #5EF2C4 0%, #12D6A0 45%, #2AE8FF 100%)',
             boxShadow: '0 0 40px rgba(212, 217, 223, 0.18)',
             fontSize: 88,
             fontWeight: 700,
-            color: '#07090B',
+            color: '#07131C',
             fontFamily: 'system-ui, sans-serif',
           }}
         >

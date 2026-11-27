@@ -14,7 +14,7 @@ export default function Icon() {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          background: 'linear-gradient(135deg, #C4CBD3 0%, #D4D9DF 50%, #F2F4F7 100%)',
+          background: 'linear-gradient(135deg, #5EF2C4 0%, #12D6A0 50%, #2AE8FF 100%)',
           borderRadius: 9,
         }}
       >
@@ -22,7 +22,7 @@ export default function Icon() {
           style={{
             fontSize: 20,
             fontWeight: 700,
-            color: '#07090B',
+            color: '#07131C',
             fontFamily: 'system-ui, sans-serif',
             lineHeight: 1,
           }}

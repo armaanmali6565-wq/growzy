@@ -52,15 +52,15 @@ export function ProgressShareDesignsClient() {
   const [guides, setGuides] = useState(false)
 
   return (
-    <main className="min-h-dvh bg-[#05070A] text-[#F2F4F7]">
+    <main className="min-h-dvh bg-[#050D14] text-[#F4F8FB]">
       <div className="mx-auto max-w-[1100px] px-4 py-8 sm:px-6">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#C9A45C]">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#5EF2C4]">
           Design lab — HD preview
         </p>
         <h1 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">Share posters</h1>
         <p className="mt-3 max-w-2xl text-sm leading-relaxed text-[#AAB3BD] sm:text-base">
           Both photos are 1080×1920. Change pixel x/y, size and colour in{' '}
-          <code className="text-[#C9A45C]">overlay-layout.ts</code>, then refresh. Red dashed boxes are
+          <code className="text-[#5EF2C4]">overlay-layout.ts</code>, then refresh. Red dashed boxes are
           guides only — they do not appear on downloaded PNGs.
         </p>
 
@@ -78,7 +78,7 @@ export function ProgressShareDesignsClient() {
               className={cn(
                 'rounded-full border px-4 py-2 text-sm font-medium',
                 poster === id
-                  ? 'border-[#3CCB91] bg-[#3CCB91]/15 text-[#3CCB91]'
+                  ? 'border-[#12D6A0] bg-[#12D6A0]/15 text-[#5EF2C4]'
                   : 'border-white/10 text-[#AAB3BD]',
               )}
             >

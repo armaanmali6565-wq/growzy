@@ -131,10 +131,10 @@ export default function ProgressSharePage() {
   }
 
   return (
-    <main className="min-h-dvh bg-[radial-gradient(circle_at_top,#0A0D10_0%,#07090B_55%,#050708_100%)] px-4 py-5 text-[#F2F4F7] sm:px-6 sm:py-8">
+    <main className="min-h-dvh bg-[radial-gradient(circle_at_top,#0C1C28_0%,#07131C_55%,#050D14_100%)] px-4 py-5 text-[#F4F8FB] sm:px-6 sm:py-8">
       <div className="mx-auto w-full max-w-md space-y-4 sm:max-w-lg sm:space-y-5">
         <header className="space-y-1.5">
-          <p className="text-[11px] font-semibold tracking-[0.14em] text-[#C9A45C]">GROWZY CAPITAL</p>
+          <p className="text-[11px] font-semibold tracking-[0.14em] text-[#5EF2C4]">GROWZY CAPITAL</p>
           <h1 className="text-xl font-semibold tracking-tight sm:text-2xl">Share My Progress</h1>
           <p className="text-sm text-[#9AA4B5]">Today&apos;s earnings, daily return and today&apos;s performance.</p>
         </header>
@@ -190,7 +190,7 @@ export default function ProgressSharePage() {
         )}
 
         <p className="pt-1 text-center text-xs text-[#6B7C90]">
-          <Link href={ROUTES.dashboard.root} className="text-[#D4D9DF] underline-offset-2 hover:underline">
+          <Link href={ROUTES.dashboard.root} className="text-[#12D6A0] underline-offset-2 hover:underline">
             Open dashboard
           </Link>
         </p>

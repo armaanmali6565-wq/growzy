@@ -26,7 +26,7 @@ export const ProcessFlow = memo(function ProcessFlow({
   const prefersReducedMotion = usePrefersReducedMotion()
 
   const stroke =
-    accent === 'cyan' ? '#AAB3BD' : accent === 'amber' ? '#C9A45C' : '#D4D9DF'
+    accent === 'cyan' ? '#2AE8FF' : accent === 'amber' ? '#F5B94C' : '#12D6A0'
   const glow =
     accent === 'cyan'
       ? 'rgba(212,217,223,0.10)'

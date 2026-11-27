@@ -97,18 +97,18 @@ export function LogoIntro() {
 
   return (
     <div
-      className="fixed inset-0 z-[200] grid place-items-center bg-[#07090B] transition-opacity duration-300 ease-out"
+      className="fixed inset-0 z-[200] grid place-items-center bg-[#07131C] transition-opacity duration-300 ease-out"
       style={{ opacity: phase === 'fade' ? 0 : 1 }}
       aria-hidden
       role="presentation"
     >
       <div className="flex flex-col items-center gap-5">
         <div className="relative motion-safe:animate-fade-in">
-          <div className="absolute -inset-8 rounded-full bg-[#D4D9DF]/10 blur-3xl" />
+          <div className="absolute -inset-8 rounded-full bg-[#12D6A0]/25 blur-3xl" />
           <LogoMark className="size-20 sm:size-24" tone="color" animated />
         </div>
         <p className="text-2xl font-semibold tracking-tight motion-safe:animate-fade-up sm:text-3xl">
-          <span className="bg-gradient-to-r from-[#C4CBD3] via-[#D4D9DF] to-[#F2F4F7] bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-[#5EF2C4] via-[#12D6A0] to-[#2AE8FF] bg-clip-text text-transparent">
             {SITE.wordmark.primary}
           </span>
         </p>

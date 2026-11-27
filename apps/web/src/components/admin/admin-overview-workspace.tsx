@@ -79,7 +79,7 @@ function ChartTip({
 }) {
   if (!active || !payload?.length) return null
   return (
-    <div className="rounded-xl border border-white/10 bg-[#0D1115]/95 px-3 py-2 text-caption shadow-e3 backdrop-blur-xl">
+    <div className="rounded-xl border border-white/10 bg-[#0c1219]/95 px-3 py-2 text-caption shadow-e3 backdrop-blur-xl">
       <p className="text-fg-subtle">{label}</p>
       {payload.map((p) => (
         <p key={p.name} className="mt-0.5 tabular-nums text-fg" style={{ color: p.color }}>
@@ -633,23 +633,23 @@ export function AdminOverviewWorkspace() {
                 <AreaChart data={charts?.depositVsWithdrawal ?? []}>
                   <defs>
                     <linearGradient id="execDepFill" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stopColor="#3CCB91" stopOpacity={0.3} />
-                      <stop offset="100%" stopColor="#3CCB91" stopOpacity={0} />
+                      <stop offset="0%" stopColor="#34d399" stopOpacity={0.3} />
+                      <stop offset="100%" stopColor="#34d399" stopOpacity={0} />
                     </linearGradient>
                     <linearGradient id="execWdrFill" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stopColor="#E05C67" stopOpacity={0.25} />
-                      <stop offset="100%" stopColor="#E05C67" stopOpacity={0} />
+                      <stop offset="0%" stopColor="#f87171" stopOpacity={0.25} />
+                      <stop offset="100%" stopColor="#f87171" stopOpacity={0} />
                     </linearGradient>
                   </defs>
                   <CartesianGrid stroke="rgba(255,255,255,0.04)" vertical={false} />
-                  <XAxis dataKey="day" tick={{ fill: '#89939E', fontSize: 11 }} axisLine={false} />
-                  <YAxis tick={{ fill: '#89939E', fontSize: 11 }} axisLine={false} width={48} />
+                  <XAxis dataKey="day" tick={{ fill: '#8b9cb3', fontSize: 11 }} axisLine={false} />
+                  <YAxis tick={{ fill: '#8b9cb3', fontSize: 11 }} axisLine={false} width={48} />
                   <Tooltip content={<ChartTip />} />
                   <Area
                     type="monotone"
                     dataKey="deposits"
                     name="Deposits"
-                    stroke="#3CCB91"
+                    stroke="#34d399"
                     fill="url(#execDepFill)"
                     strokeWidth={2}
                   />
@@ -657,7 +657,7 @@ export function AdminOverviewWorkspace() {
                     type="monotone"
                     dataKey="withdrawals"
                     name="Withdrawals"
-                    stroke="#E05C67"
+                    stroke="#f87171"
                     fill="url(#execWdrFill)"
                     strokeWidth={2}
                   />
@@ -672,14 +672,14 @@ export function AdminOverviewWorkspace() {
               <ResponsiveContainer width="100%" height="100%">
                 <AreaChart data={charts?.profitDistributed ?? []}>
                   <CartesianGrid stroke="rgba(255,255,255,0.04)" vertical={false} />
-                  <XAxis dataKey="day" tick={{ fill: '#89939E', fontSize: 11 }} axisLine={false} />
-                  <YAxis tick={{ fill: '#89939E', fontSize: 11 }} axisLine={false} width={48} />
+                  <XAxis dataKey="day" tick={{ fill: '#8b9cb3', fontSize: 11 }} axisLine={false} />
+                  <YAxis tick={{ fill: '#8b9cb3', fontSize: 11 }} axisLine={false} width={48} />
                   <Tooltip content={<ChartTip />} />
                   <Area
                     type="monotone"
                     dataKey="value"
                     name="Profit"
-                    stroke="#AAB3BD"
+                    stroke="#a78bfa"
                     fill="rgba(167,139,250,0.2)"
                     strokeWidth={2}
                   />
@@ -694,10 +694,10 @@ export function AdminOverviewWorkspace() {
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={charts?.newUsers ?? []}>
                   <CartesianGrid stroke="rgba(255,255,255,0.04)" vertical={false} />
-                  <XAxis dataKey="day" tick={{ fill: '#89939E', fontSize: 11 }} axisLine={false} />
-                  <YAxis tick={{ fill: '#89939E', fontSize: 11 }} axisLine={false} width={32} />
+                  <XAxis dataKey="day" tick={{ fill: '#8b9cb3', fontSize: 11 }} axisLine={false} />
+                  <YAxis tick={{ fill: '#8b9cb3', fontSize: 11 }} axisLine={false} width={32} />
                   <Tooltip content={<ChartTip />} />
-                  <Bar dataKey="value" name="Users" fill="#8FA8C0" radius={[6, 6, 0, 0]} />
+                  <Bar dataKey="value" name="Users" fill="#60a5fa" radius={[6, 6, 0, 0]} />
                 </BarChart>
               </ResponsiveContainer>
             </div>
@@ -713,19 +713,19 @@ export function AdminOverviewWorkspace() {
                 <AreaChart data={charts?.activeInvestorsGrowth ?? []}>
                   <defs>
                     <linearGradient id="execInvFill" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stopColor="#D4D9DF" stopOpacity={0.3} />
-                      <stop offset="100%" stopColor="#D4D9DF" stopOpacity={0} />
+                      <stop offset="0%" stopColor="#2dd4bf" stopOpacity={0.3} />
+                      <stop offset="100%" stopColor="#2dd4bf" stopOpacity={0} />
                     </linearGradient>
                   </defs>
                   <CartesianGrid stroke="rgba(255,255,255,0.04)" vertical={false} />
-                  <XAxis dataKey="day" tick={{ fill: '#89939E', fontSize: 11 }} axisLine={false} />
-                  <YAxis tick={{ fill: '#89939E', fontSize: 11 }} axisLine={false} width={40} />
+                  <XAxis dataKey="day" tick={{ fill: '#8b9cb3', fontSize: 11 }} axisLine={false} />
+                  <YAxis tick={{ fill: '#8b9cb3', fontSize: 11 }} axisLine={false} width={40} />
                   <Tooltip content={<ChartTip />} />
                   <Area
                     type="monotone"
                     dataKey="value"
                     name="Investors"
-                    stroke="#D4D9DF"
+                    stroke="#2dd4bf"
                     fill="url(#execInvFill)"
                     strokeWidth={2}
                   />
@@ -740,10 +740,10 @@ export function AdminOverviewWorkspace() {
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={charts?.kycApprovals ?? []}>
                   <CartesianGrid stroke="rgba(255,255,255,0.04)" vertical={false} />
-                  <XAxis dataKey="day" tick={{ fill: '#89939E', fontSize: 11 }} axisLine={false} />
-                  <YAxis tick={{ fill: '#89939E', fontSize: 11 }} axisLine={false} width={32} />
+                  <XAxis dataKey="day" tick={{ fill: '#8b9cb3', fontSize: 11 }} axisLine={false} />
+                  <YAxis tick={{ fill: '#8b9cb3', fontSize: 11 }} axisLine={false} width={32} />
                   <Tooltip content={<ChartTip />} />
-                  <Bar dataKey="value" name="Approvals" fill="#D4D9DF" radius={[6, 6, 0, 0]} />
+                  <Bar dataKey="value" name="Approvals" fill="#12D6A0" radius={[6, 6, 0, 0]} />
                 </BarChart>
               </ResponsiveContainer>
             </div>
@@ -755,16 +755,16 @@ export function AdminOverviewWorkspace() {
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={walletChart} layout="vertical" margin={{ left: 16 }}>
                   <CartesianGrid stroke="rgba(255,255,255,0.04)" horizontal={false} />
-                  <XAxis type="number" tick={{ fill: '#89939E', fontSize: 11 }} axisLine={false} />
+                  <XAxis type="number" tick={{ fill: '#8b9cb3', fontSize: 11 }} axisLine={false} />
                   <YAxis
                     type="category"
                     dataKey="name"
-                    tick={{ fill: '#89939E', fontSize: 11 }}
+                    tick={{ fill: '#8b9cb3', fontSize: 11 }}
                     axisLine={false}
                     width={72}
                   />
                   <Tooltip content={<ChartTip />} />
-                  <Bar dataKey="value" name="Balance" fill="#C9A45C" radius={[0, 6, 6, 0]} />
+                  <Bar dataKey="value" name="Balance" fill="#2AE8FF" radius={[0, 6, 6, 0]} />
                 </BarChart>
               </ResponsiveContainer>
             </div>

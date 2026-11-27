@@ -282,13 +282,13 @@ export const HistoricalReturnTimeline = memo(function HistoricalReturnTimeline()
         >
           <defs>
             <linearGradient id={`${gid}-up`} x1="0" y1="1" x2="0" y2="0">
-              <stop offset="0%" stopColor="#23966D" />
-              <stop offset="45%" stopColor="#3CCB91" />
-              <stop offset="100%" stopColor="#3CCB91" />
+              <stop offset="0%" stopColor="#0B6B52" />
+              <stop offset="45%" stopColor="#12D6A0" />
+              <stop offset="100%" stopColor="#5EF2C4" />
             </linearGradient>
             <linearGradient id={`${gid}-down`} x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#E05C67" />
-              <stop offset="100%" stopColor="#A83D48" />
+              <stop offset="0%" stopColor="#F07178" />
+              <stop offset="100%" stopColor="#8B2E36" />
             </linearGradient>
             <filter id={`${gid}-glow`} x="-60%" y="-40%" width="220%" height="200%">
               <feGaussianBlur stdDeviation="3.5" result="b" />
@@ -400,7 +400,7 @@ export const HistoricalReturnTimeline = memo(function HistoricalReturnTimeline()
                         x={b.cx}
                         y={b.up ? b.y - 8 : b.y + b.h + 14}
                         textAnchor="middle"
-                        fill={b.up ? '#3CCB91' : '#E05C67'}
+                        fill={b.up ? '#5EF2C4' : '#F07178'}
                         fontSize="11"
                         fontWeight={600}
                         style={{ pointerEvents: 'none' }}

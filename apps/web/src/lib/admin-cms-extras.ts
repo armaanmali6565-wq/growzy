@@ -411,7 +411,7 @@ export function createDefaultCmsExtras(): CmsExtrasState {
       scrollSpeed: 38,
       refreshMs: 2800,
       direction: 'left',
-      upColor: '#3CCB91',
+      upColor: '#12D6A0',
       downColor: '#F87171',
     },
     heroMotion: {

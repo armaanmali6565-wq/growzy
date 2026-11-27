@@ -120,7 +120,7 @@ export function Hero() {
       <div
         className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[70vh]"
         style={{
-          background: `radial-gradient(80% 55% at 50% 0%, rgb(212 217 223 / ${0.10 * intensity}) 0%, transparent 70%)`,
+          background: `radial-gradient(80% 55% at 50% 0%, rgb(18 214 160 / ${0.28 * intensity}) 0%, transparent 70%)`,
         }}
       />
       {showGlow ? (

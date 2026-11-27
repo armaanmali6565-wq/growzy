@@ -23,7 +23,7 @@ export function LogoMark({
 
   const isMono = tone === 'mono'
   const isLight = tone === 'light'
-  const fillPlate = isLight ? '#07090B' : isMono ? 'currentColor' : undefined
+  const fillPlate = isLight ? '#07131C' : isMono ? 'currentColor' : undefined
   const strokeMain = isMono || isLight ? 'currentColor' : undefined
 
   return (
@@ -36,9 +36,9 @@ export function LogoMark({
     >
       <defs>
         <linearGradient id={gid} x1="6" y1="4" x2="36" y2="38" gradientUnits="userSpaceOnUse">
-          <stop stopColor="#C4CBD3" />
-          <stop offset="0.45" stopColor="#D4D9DF" />
-          <stop offset="1" stopColor="#F2F4F7" />
+          <stop stopColor="#5EF2C4" />
+          <stop offset="0.45" stopColor="#12D6A0" />
+          <stop offset="1" stopColor="#2AE8FF" />
         </linearGradient>
         <filter id={glowId} x="-40%" y="-40%" width="180%" height="180%">
           <feGaussianBlur stdDeviation="1.6" result="b" />
@@ -73,7 +73,7 @@ export function LogoMark({
       {/* Growth bars (investment) */}
       <g
         filter={tone === 'color' ? `url(#${glowId})` : undefined}
-        stroke={strokeMain ?? '#D4D9DF'}
+        stroke={strokeMain ?? '#5EF2C4'}
         strokeWidth="2.2"
         strokeLinecap="round"
       >
@@ -103,7 +103,7 @@ export function LogoMark({
         cx="28.5"
         cy="13.2"
         r="2.15"
-        fill={strokeMain ?? '#C9A45C'}
+        fill={strokeMain ?? '#5EF2C4'}
         filter={tone === 'color' ? `url(#${glowId})` : undefined}
       />
     </svg>

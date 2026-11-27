@@ -33,7 +33,7 @@ export function PremiumAtmosphere() {
           className="absolute left-1/2 top-[28%] size-[32rem] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-70 motion-safe:animate-float"
           style={{
             background:
-              'radial-gradient(circle, rgb(212 217 223 / 0.06) 0%, transparent 65%)',
+              'radial-gradient(circle, rgb(18 214 160 / 0.12) 0%, transparent 65%)',
           }}
         />
       ) : null}

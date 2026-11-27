@@ -20,7 +20,7 @@ export default function GlobalError({
           placeItems: 'center',
           margin: 0,
           padding: '2rem',
-          backgroundColor: '#07090B',
+          backgroundColor: '#07131C',
           color: '#ffffff',
           fontFamily: 'ui-sans-serif, system-ui, sans-serif',
           textAlign: 'center',
@@ -41,8 +41,8 @@ export default function GlobalError({
           <button
             onClick={reset}
             style={{
-              backgroundColor: '#D4D9DF',
-              color: '#07090B',
+              backgroundColor: '#12D6A0',
+              color: '#07131C',
               border: 0,
               borderRadius: '10px',
               padding: '0.75rem 1.5rem',

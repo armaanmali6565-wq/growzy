@@ -134,7 +134,7 @@ export function AdminAnnouncementsWorkspace() {
     title: '',
     body: '',
     type: 'NEWS' as Announcement['type'],
-    color: '#D4D9DF',
+    color: '#12D6A0',
     priority: 'NORMAL' as Announcement['priority'],
     expiresAt: '',
     displayPage: 'ALL' as Announcement['displayPage'],
@@ -364,7 +364,7 @@ export function AdminAnnouncementsWorkspace() {
                   <div className="flex flex-wrap items-center gap-2">
                     <span
                       className="inline-block size-2.5 rounded-full"
-                      style={{ background: a.color || '#D4D9DF' }}
+                      style={{ background: a.color || '#12D6A0' }}
                       aria-hidden
                     />
                     <p className="font-medium text-fg">{a.title}</p>

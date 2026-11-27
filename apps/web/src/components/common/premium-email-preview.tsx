@@ -175,7 +175,7 @@ export function PremiumEmailPreviewStudio({
           </div>
         </div>
 
-        <div className="overflow-x-auto rounded-2xl bg-[#07090B]/80 p-4 sm:p-6">
+        <div className="overflow-x-auto rounded-2xl bg-[#07131C]/80 p-4 sm:p-6">
           <EmailHtmlFrame html={html} mode={mode} />
         </div>
 

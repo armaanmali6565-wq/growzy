@@ -16,7 +16,7 @@ export function ForexTicker() {
   return (
     <div
       className={cn(
-        'w-full min-w-0 overflow-hidden border-b border-white/[0.06] bg-[#07090B] transition-opacity duration-300',
+        'w-full min-w-0 overflow-hidden border-b border-white/[0.06] bg-[#07131C] transition-opacity duration-300',
         journeyQuiet && 'opacity-40',
       )}
       aria-hidden={journeyQuiet || undefined}

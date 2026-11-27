@@ -39,7 +39,7 @@ export function NavBar() {
   return (
     <header
       className={cn(
-        'w-full min-w-0 border-b border-white/[0.08] bg-[#07090B] pt-[env(safe-area-inset-top)] transition-[box-shadow] duration-300',
+        'w-full min-w-0 border-b border-white/[0.08] bg-[#07131C] pt-[env(safe-area-inset-top)] transition-[box-shadow] duration-300',
         scrolled && 'shadow-[0_8px_28px_rgb(0_0_0_/_0.45)]',
       )}
     >

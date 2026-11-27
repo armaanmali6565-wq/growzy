@@ -94,7 +94,7 @@ export const TeamRoster = memo(function TeamRoster({
                     <AvatarFallback>{initialsOf(first, last)}</AvatarFallback>
                   </Avatar>
                   <span
-                    className="absolute -bottom-0.5 -right-0.5 size-3 rounded-full border-2 border-[#07090B] bg-profit shadow-[0_0_8px_rgba(212,217,223,0.8)]"
+                    className="absolute -bottom-0.5 -right-0.5 size-3 rounded-full border-2 border-[#0a1620] bg-profit shadow-[0_0_8px_rgba(18,214,160,0.8)]"
                     aria-hidden
                   />
                 </div>

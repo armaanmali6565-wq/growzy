@@ -42,7 +42,7 @@ export function InvestorMap({ showHeader = true }: { showHeader?: boolean }) {
 
   return (
     <RevealOnScroll className="mt-4 w-full min-w-0 sm:mt-6">
-      <div className="relative w-full min-w-0 overflow-hidden rounded-2xl border border-white/[0.08] bg-[#05070A] p-4 sm:p-6">
+      <div className="relative w-full min-w-0 overflow-hidden rounded-2xl border border-white/[0.08] bg-[#07131C] p-4 sm:p-6">
         {showHeader ? (
           <div className="relative z-[1] mb-4 min-w-0">
             <p className="text-overline text-hl-cyan">Global footprint</p>
@@ -75,7 +75,7 @@ export function InvestorMap({ showHeader = true }: { showHeader?: boolean }) {
         </div>
 
         <div className="relative z-[1] grid min-w-0 gap-4 lg:grid-cols-[1fr_16rem]">
-          <div className="relative aspect-[4/3] w-full min-w-0 overflow-hidden rounded-2xl border border-white/[0.06] bg-[#030508] sm:aspect-[16/10] lg:aspect-[2/1]">
+          <div className="relative aspect-[4/3] w-full min-w-0 overflow-hidden rounded-2xl border border-white/[0.06] bg-[#061018] sm:aspect-[16/10] lg:aspect-[2/1]">
             <Image
               src="/marketing/tech-world-map.png"
               alt=""
@@ -93,15 +93,15 @@ export function InvestorMap({ showHeader = true }: { showHeader?: boolean }) {
             >
               <defs>
                 <linearGradient id="im-arc" x1="0" y1="0" x2="1" y2="0">
-                  <stop offset="0%" stopColor="#7EB8FF" stopOpacity="0.05" />
-                  <stop offset="35%" stopColor="#E8F2FF" stopOpacity="0.9" />
-                  <stop offset="65%" stopColor="#9FD0FF" stopOpacity="0.8" />
-                  <stop offset="100%" stopColor="#5A9FE8" stopOpacity="0.05" />
+                  <stop offset="0%" stopColor="#2AE8FF" stopOpacity="0.2" />
+                  <stop offset="35%" stopColor="#5EF2C4" stopOpacity="0.9" />
+                  <stop offset="65%" stopColor="#12D6A0" stopOpacity="0.85" />
+                  <stop offset="100%" stopColor="#2AE8FF" stopOpacity="0.2" />
                 </linearGradient>
                 <linearGradient id="im-arc-hot" x1="0" y1="0" x2="1" y2="0">
-                  <stop offset="0%" stopColor="#C9A45C" stopOpacity="0.12" />
-                  <stop offset="50%" stopColor="#FFFFFF" stopOpacity="1" />
-                  <stop offset="100%" stopColor="#7EB8FF" stopOpacity="0.18" />
+                  <stop offset="0%" stopColor="#2AE8FF" stopOpacity="0.2" />
+                  <stop offset="50%" stopColor="#5EF2C4" stopOpacity="1" />
+                  <stop offset="100%" stopColor="#12D6A0" stopOpacity="0.25" />
                 </linearGradient>
                 <filter id="im-glow" x="-80%" y="-80%" width="260%" height="260%">
                   <feGaussianBlur stdDeviation="2.8" result="b" />
@@ -138,7 +138,7 @@ export function InvestorMap({ showHeader = true }: { showHeader?: boolean }) {
                     {!prefersReducedMotion ? (
                       <circle
                         r={hot ? 2.8 : 2}
-                        fill={hot ? '#FFFFFF' : '#B8D4F0'}
+                        fill={hot ? '#5EF2C4' : '#12D6A0'}
                         filter="url(#im-glow)"
                       >
                         <animateMotion
@@ -178,7 +178,7 @@ export function InvestorMap({ showHeader = true }: { showHeader?: boolean }) {
                         cx={x}
                         cy={y}
                         r={on ? 22 : 15}
-                        fill={on ? '#E8F2FF' : '#7EB8FF'}
+                        fill={on ? '#5EF2C4' : '#12D6A0'}
                         animate={{ opacity: [0.45, 0.06, 0.45], scale: [0.8, 1.45, 0.8] }}
                         transition={{
                           duration: 2.4,
@@ -192,7 +192,7 @@ export function InvestorMap({ showHeader = true }: { showHeader?: boolean }) {
                       cx={x}
                       cy={y}
                       r={on ? 7 : 5}
-                      fill={on ? '#FFFFFF' : '#D4E8FF'}
+                      fill={on ? '#5EF2C4' : '#12D6A0'}
                       filter="url(#im-glow-strong)"
                     />
                     <circle cx={x} cy={y} r="2" fill="#FFFFFF" />

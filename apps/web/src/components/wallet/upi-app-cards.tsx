@@ -25,7 +25,7 @@ function appsFromMethods(
       id: method.id,
       name: details.appName || method.name,
       deepLink,
-      brand: details.brand || '#D4D9DF',
+      brand: details.brand || '#12D6A0',
     })
   }
   return apps

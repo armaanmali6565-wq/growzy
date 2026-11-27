@@ -66,7 +66,7 @@ export function TradingSystemSection({
                 left: `${glow.x}%`,
                 top: `${glow.y}%`,
                 background:
-                  'radial-gradient(circle, rgb(212 217 223 / 0.07) 0%, transparent 68%)',
+                  'radial-gradient(circle, rgb(18 214 160 / 0.14) 0%, transparent 68%)',
               }}
             />
           ) : null}
