@@ -53,10 +53,18 @@ export function csrfCookieOptions(maxAgeMs: number): CookieOptions {
   }
 }
 
+/**
+ * OAuth state nonce is only read by the API callback on the API host, so it is
+ * deliberately host-only (no Domain attribute). A mismatched COOKIE_DOMAIN would
+ * otherwise make the browser silently drop it and fail every Google login with
+ * invalid_state.
+ */
 export function oauthStateCookieOptions(maxAgeMs: number): CookieOptions {
   return {
-    ...baseCookieOptions(),
+    httpOnly: true,
+    secure: env.COOKIE_SECURE || isProduction,
     sameSite: 'lax',
+    path: '/',
     maxAge: maxAgeMs,
   }
 }
