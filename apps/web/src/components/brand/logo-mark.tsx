@@ -5,7 +5,7 @@ import { cn } from '@/lib/cn'
 export type LogoTone = 'color' | 'mono' | 'light' | 'dark'
 
 /**
- * Growzy Capital mark — geometric “W” fused with growth bars, a security ring, and an AI node.
+ * Growzy Capital mark — geometric “G” fused with growth bars, a security ring, and an AI node.
  * Original SVG; no stock marks.
  */
 export function LogoMark({
@@ -86,22 +86,28 @@ export function LogoMark({
         <path d="M21 26 V15" className={animated ? 'logo-draw' : undefined} />
       </g>
 
-      {/* Geometric W */}
+      {/* Geometric G + security arc */}
       <path
-        d="M11.5 13.2 L16.4 27.2 L20 17.2 L23.6 27.2 L28.5 13.2"
+        d="M28.5 15.2c-1.1-3.2-4.2-5.4-7.8-5.4-4.9 0-8.7 3.7-8.7 8.7s3.8 8.7 8.7 8.7c3.2 0 5.9-1.6 7.4-4.1"
         stroke={strokeMain ?? '#FFFFFF'}
         strokeWidth="2.35"
         strokeLinecap="round"
-        strokeLinejoin="round"
         fill="none"
         className={animated ? 'logo-draw-g' : undefined}
         filter={tone === 'color' ? `url(#${glowId})` : undefined}
       />
+      <path
+        d="M20.8 20.5 H28.2"
+        stroke={strokeMain ?? '#2AE8FF'}
+        strokeWidth="2.35"
+        strokeLinecap="round"
+        className={animated ? 'logo-draw' : undefined}
+      />
 
       {/* AI node */}
       <circle
-        cx="28.5"
-        cy="13.2"
+        cx="28.4"
+        cy="20.5"
         r="2.15"
         fill={strokeMain ?? '#5EF2C4'}
         filter={tone === 'color' ? `url(#${glowId})` : undefined}

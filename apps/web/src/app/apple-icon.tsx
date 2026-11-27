@@ -26,14 +26,14 @@ export default function AppleIcon() {
             alignItems: 'center',
             justifyContent: 'center',
             background: 'linear-gradient(135deg, #5EF2C4 0%, #12D6A0 45%, #2AE8FF 100%)',
-            boxShadow: '0 0 40px rgba(212, 217, 223, 0.18)',
+            boxShadow: '0 0 40px rgba(18, 214, 160, 0.35)',
             fontSize: 88,
             fontWeight: 700,
             color: '#07131C',
             fontFamily: 'system-ui, sans-serif',
           }}
         >
-          W
+          G
         </div>
       </div>
     ),

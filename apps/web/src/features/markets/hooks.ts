@@ -16,7 +16,9 @@ const QUOTES_CACHE_KEY = 'growzy_market_quotes_v1'
 function readCachedQuotes(): MarketQuotesPayload | undefined {
   if (typeof window === 'undefined') return undefined
   try {
-    const raw = window.sessionStorage.getItem(QUOTES_CACHE_KEY)
+    const raw =
+      window.localStorage.getItem(QUOTES_CACHE_KEY) ??
+      window.sessionStorage.getItem(QUOTES_CACHE_KEY)
     if (!raw) return undefined
     const parsed = JSON.parse(raw) as MarketQuotesPayload
     return Array.isArray(parsed?.quotes) && parsed.quotes.length > 0 ? parsed : undefined
@@ -51,7 +53,9 @@ export function useMarketQuotes(options?: QueryHookOptions) {
       const res = await marketService.quotes()
       if (typeof window !== 'undefined' && res?.quotes?.length > 0) {
         try {
-          window.sessionStorage.setItem(QUOTES_CACHE_KEY, JSON.stringify(res))
+          const serialized = JSON.stringify(res)
+          window.localStorage.setItem(QUOTES_CACHE_KEY, serialized)
+          window.sessionStorage.setItem(QUOTES_CACHE_KEY, serialized)
         } catch {
           /* ignore storage quota errors */
         }

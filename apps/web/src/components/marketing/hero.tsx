@@ -14,6 +14,7 @@ import { usePrefersReducedMotion } from '@/hooks/use-reduced-motion'
 import { useLandingLiveStats } from '@/features/landing'
 import { usePublishedLanding } from '@/features/cms/site'
 
+import { HeroVisual } from './hero-visual'
 import { HistoricalNote } from './historical-note'
 
 const HeroMarketCards = dynamic(
@@ -21,19 +22,6 @@ const HeroMarketCards = dynamic(
   {
     ssr: false,
     loading: () => <div className="h-24 w-full" aria-hidden />,
-  },
-)
-
-const HeroVisual = dynamic(
-  () => import('./hero-visual').then((m) => m.HeroVisual),
-  {
-    ssr: false,
-    loading: () => (
-      <div
-        className="aspect-[16/9] w-full animate-pulse rounded-2xl border border-glass-line bg-raised/40"
-        aria-hidden
-      />
-    ),
   },
 )
 
@@ -173,22 +161,20 @@ export function Hero() {
           </Button>
         </div>
 
-        <FadeIn delay={0.08}>
-          <ul className="mt-7 flex max-w-xl flex-wrap items-center justify-center gap-x-4 gap-y-2 sm:mt-8">
-            {TRUST.map((t) => (
-              <li
-                key={t.label}
-                className="inline-flex items-center gap-1.5 text-caption text-fg-muted"
-              >
-                <t.icon className="size-3.5 text-accent-300" aria-hidden />
-                {t.label}
-              </li>
-            ))}
-          </ul>
-        </FadeIn>
+        <ul className="mt-7 flex max-w-xl flex-wrap items-center justify-center gap-x-4 gap-y-2 sm:mt-8">
+          {TRUST.map((t) => (
+            <li
+              key={t.label}
+              className="inline-flex items-center gap-1.5 text-caption text-fg-muted"
+            >
+              <t.icon className="size-3.5 text-accent-300" aria-hidden />
+              {t.label}
+            </li>
+          ))}
+        </ul>
       </div>
 
-      <FadeIn delay={0.12} y={28} className="container-page mt-12 sm:mt-14 lg:mt-16">
+      <div className="container-page mt-12 sm:mt-14 lg:mt-16">
         <div className="relative mx-auto max-w-5xl">
           <div
             className="pointer-events-none absolute -inset-6 -z-10 rounded-[2.5rem] bg-accent-500/10 blur-3xl sm:-inset-10"
@@ -197,7 +183,7 @@ export function Hero() {
           <HeroVisual />
           <HistoricalNote className="mt-4 text-center" />
         </div>
-      </FadeIn>
+      </div>
 
       {/* Below-the-fold proof — not part of the first viewport budget */}
       <FadeIn delay={0.16} className="container-page mt-12 w-full max-w-3xl sm:mt-14">

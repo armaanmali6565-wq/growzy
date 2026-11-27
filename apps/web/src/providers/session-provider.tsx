@@ -131,6 +131,18 @@ export function SessionProvider({
     }
   }, [data, seedSession, isLoading, isFetching, isError, failureReason, refresh, setSession, clearSession])
 
+  useEffect(() => {
+    try {
+      if (value.isAuthenticated) {
+        window.localStorage.setItem('growzy_authed_hint_v1', '1')
+      } else if (!value.isLoading) {
+        window.localStorage.removeItem('growzy_authed_hint_v1')
+      }
+    } catch {
+      /* ignore storage errors */
+    }
+  }, [value.isAuthenticated, value.isLoading])
+
   return <SessionContext.Provider value={value}>{children}</SessionContext.Provider>
 }
 

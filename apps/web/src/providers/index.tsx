@@ -13,11 +13,6 @@ import { QueryProvider } from './query-provider'
 import { SessionProvider, type Session } from './session-provider'
 import { ThemeProvider } from './theme-provider'
 
-const LogoIntro = dynamic(
-  () => import('@/components/brand/logo-intro').then((m) => m.LogoIntro),
-  { ssr: false },
-)
-
 const ToastProvider = dynamic(
   () => import('./toast-provider').then((m) => m.ToastProvider),
   { ssr: false },
@@ -70,7 +65,6 @@ export function Providers({
             <TooltipProvider delayDuration={200}>
               <DeployVersionGuard />
               <NetworkStatusBanner />
-              <LogoIntro />
               {children}
               <IdleToastProvider />
             </TooltipProvider>

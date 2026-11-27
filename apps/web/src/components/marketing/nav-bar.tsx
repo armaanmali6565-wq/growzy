@@ -3,6 +3,7 @@
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { useEffect, useState } from 'react'
 import { ROUTES } from '@meridian/shared'
 
 import { Logo } from '@/components/common/logo'
@@ -28,7 +29,18 @@ export function NavBar() {
   const pathname = usePathname()
   const scrolled = useScrolled(12)
   const { platform } = usePublishedPlatform()
-  const { isAuthenticated } = useSession()
+  const { isAuthenticated, isLoading: sessionLoading } = useSession()
+  const [authedHint, setAuthedHint] = useState(false)
+
+  useEffect(() => {
+    try {
+      setAuthedHint(window.localStorage.getItem('growzy_authed_hint_v1') === '1')
+    } catch {
+      /* ignore */
+    }
+  }, [])
+
+  const showDashboard = isAuthenticated || (sessionLoading && authedHint)
 
   const enabledNav = platform.marketingNav.filter((n) => n.enabled)
   const navItems =
@@ -82,7 +94,7 @@ export function NavBar() {
         </ul>
 
         <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
-          {isAuthenticated ? (
+          {showDashboard ? (
             <Button asChild size="sm" className="hidden sm:inline-flex">
               <Link href={ROUTES.dashboard.root}>Dashboard</Link>
             </Button>
