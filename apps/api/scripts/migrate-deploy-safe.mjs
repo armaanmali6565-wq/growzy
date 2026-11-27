@@ -1,19 +1,20 @@
 #!/usr/bin/env node
 /**
- * Production-safe `prisma migrate deploy` with recovery for one known failed migration.
+ * Production-safe `prisma migrate deploy` with automatic P3009 recovery for known
+ * idempotent migrations that can get stuck if an earlier deploy was interrupted.
  *
- * 20260806120000_deposit_withdrawal_submission_fields failed on Render because the SQL
- * file had a UTF-8 BOM. Postgres rejected it at parse time — no DDL was applied.
- * Prisma still recorded the migration as failed (P3009), which blocks every deploy.
- *
- * Recovery: mark that migration rolled back, then deploy again (idempotent SQL).
- * This path only runs when migrate deploy fails with P3009 for that exact migration.
+ * Recovery: mark the failed migration rolled back, then run `prisma migrate deploy`
+ * again (idempotent SQL). Loops up to RECOVERABLE_MIGRATIONS.length times in case
+ * more than one known migration needs recovery.
  */
 import { spawnSync } from 'node:child_process'
 import { fileURLToPath } from 'node:url'
 import path from 'node:path'
 
-const KNOWN_FAILED_MIGRATION = '20260806120000_deposit_withdrawal_submission_fields'
+const RECOVERABLE_MIGRATIONS = [
+  '20260804220000_phase2_user_admin',
+  '20260806120000_deposit_withdrawal_submission_fields',
+]
 
 const apiRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 
@@ -37,37 +38,40 @@ function print(result) {
   if (result.stderr) process.stderr.write(result.stderr)
 }
 
-function isKnownP3009(result) {
+function detectRecoverableP3009(result) {
   const text = `${result.stdout}\n${result.stderr}`
-  return (
-    text.includes('P3009') &&
-    text.includes(KNOWN_FAILED_MIGRATION) &&
-    /failed migrations|migration started .* failed/i.test(text)
+  if (!text.includes('P3009') || !/failed migrations|migration started .* failed/i.test(text)) {
+    return null
+  }
+  return RECOVERABLE_MIGRATIONS.find((name) => text.includes(name)) ?? null
+}
+
+const resolved = new Set()
+
+for (let attempt = 0; attempt <= RECOVERABLE_MIGRATIONS.length; attempt++) {
+  const res = runPrisma(['migrate', 'deploy'])
+  print(res)
+
+  if (res.status === 0) {
+    process.exit(0)
+  }
+
+  const failedMigration = detectRecoverableP3009(res)
+  if (!failedMigration || resolved.has(failedMigration)) {
+    process.exit(res.status)
+  }
+
+  resolved.add(failedMigration)
+  console.error(
+    `[migrate-deploy-safe] Recovering failed migration ${failedMigration} via resolve --rolled-back (idempotent SQL).`,
   )
+
+  const resolveRes = runPrisma(['migrate', 'resolve', '--rolled-back', failedMigration])
+  print(resolveRes)
+  if (resolveRes.status !== 0) {
+    console.error(`[migrate-deploy-safe] resolve --rolled-back failed for ${failedMigration}`)
+    process.exit(resolveRes.status)
+  }
 }
 
-const first = runPrisma(['migrate', 'deploy'])
-print(first)
-
-if (first.status === 0) {
-  process.exit(0)
-}
-
-if (!isKnownP3009(first)) {
-  process.exit(first.status)
-}
-
-console.error(
-  `[migrate-deploy-safe] Recovering known failed migration ${KNOWN_FAILED_MIGRATION} (BOM parse failure; no schema changes applied).`,
-)
-
-const resolve = runPrisma(['migrate', 'resolve', '--rolled-back', KNOWN_FAILED_MIGRATION])
-print(resolve)
-if (resolve.status !== 0) {
-  console.error('[migrate-deploy-safe] resolve --rolled-back failed')
-  process.exit(resolve.status)
-}
-
-const second = runPrisma(['migrate', 'deploy'])
-print(second)
-process.exit(second.status)
+process.exit(1)
