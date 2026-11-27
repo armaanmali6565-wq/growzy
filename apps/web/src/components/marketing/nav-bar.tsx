@@ -27,14 +27,13 @@ function isNavActive(pathname: string, href: string) {
 export function NavBar() {
   const pathname = usePathname()
   const scrolled = useScrolled(12)
-  const { platform, isSuccess } = usePublishedPlatform()
+  const { platform } = usePublishedPlatform()
   const { isAuthenticated } = useSession()
 
+  const enabledNav = platform.marketingNav.filter((n) => n.enabled)
   const navItems =
-    isSuccess && platform.marketingNav.some((n) => n.enabled)
-      ? platform.marketingNav
-          .filter((n) => n.enabled)
-          .map((n) => ({ label: n.label, href: n.href }))
+    enabledNav.length > 0
+      ? enabledNav.map((n) => ({ label: n.label, href: n.href }))
       : MARKETING_NAV
 
   return (

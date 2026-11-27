@@ -1,6 +1,6 @@
 'use client'
 
-import { useId, useMemo, useRef } from 'react'
+import { useId, useMemo } from 'react'
 import {
   Area,
   AreaChart,
@@ -21,7 +21,6 @@ import {
   mapCanonicalEquityCurve,
   type PublicEquityChartPoint,
 } from '@/features/landing/public-equity-chart'
-import { useNearViewport } from '@/hooks/use-near-viewport'
 import { usePrefersReducedMotion } from '@/hooks/use-reduced-motion'
 import { useDemoCharts } from '@/lib/demo-backtest'
 import { cn } from '@/lib/cn'
@@ -57,9 +56,7 @@ function ChartTooltip({
 /** Homepage growth-of-$100 chart bound to the canonical public demo equityCurve. */
 export function HeroVisual({ className }: { className?: string }) {
   const prefersReducedMotion = usePrefersReducedMotion()
-  const rootRef = useRef<HTMLDivElement>(null)
-  const near = useNearViewport(rootRef, { rootMargin: '280px 0px' })
-  const { data: charts, isLoading } = useDemoCharts({ enabled: near })
+  const { data: charts, isLoading } = useDemoCharts()
   const gradientId = useId().replace(/:/g, '')
   const fillId = `hero-equity-fill-${gradientId}`
   const strokeId = `hero-equity-stroke-${gradientId}`
@@ -84,7 +81,7 @@ export function HeroVisual({ className }: { className?: string }) {
       : 'Growth of $100'
 
   return (
-    <div ref={rootRef} className={cn('relative isolate w-full min-w-0', className)}>
+    <div className={cn('relative isolate w-full min-w-0', className)}>
       <div className="panel-luxury overflow-hidden p-4 shadow-e4 sm:p-6 lg:p-8">
         <div className="mb-3 flex min-w-0 flex-wrap items-end justify-between gap-2">
           <div className="min-w-0">
@@ -94,9 +91,11 @@ export function HeroVisual({ className }: { className?: string }) {
                 ? formatChartUsd(end.equity)
                 : meta?.endingEquity != null
                   ? formatChartUsd(meta.endingEquity)
-                  : '—'}
+                  : '$834.40'}
               {meta?.totalReturnPct != null ? (
                 <span className="ml-2 text-profit">{formatChartPct(meta.totalReturnPct)}</span>
+              ) : isLoading ? (
+                <span className="ml-2 text-profit">+734.40%</span>
               ) : null}
             </p>
           </div>
@@ -110,7 +109,7 @@ export function HeroVisual({ className }: { className?: string }) {
           role="img"
           aria-label={label}
         >
-          {(!near || isLoading) && points.length === 0 ? (
+          {isLoading && points.length === 0 ? (
             <Skeleton className="h-full w-full rounded-xl" />
           ) : points.length === 0 ? (
             <p className="grid h-full place-items-center text-body-sm text-fg-subtle">

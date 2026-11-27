@@ -23,9 +23,20 @@ export function ForexTicker() {
     >
       <div className="flex h-9 w-full min-w-0 items-center gap-1.5 px-0 sm:h-10 sm:gap-2 sm:px-1 [mask-image:linear-gradient(90deg,transparent,black_2%,black_98%,transparent)]">
         {quotes.length === 0 || offline ? (
-          <p className="min-w-0 flex-1 truncate px-3 text-[11px] text-fg-subtle sm:px-4">
-            {data?.message || (isLoading ? 'Loading market data…' : 'Market data unavailable')}
-          </p>
+          isLoading && !offline ? (
+            <div className="flex min-w-0 flex-1 items-center gap-2 overflow-hidden px-3 sm:px-4" aria-hidden>
+              {Array.from({ length: 8 }).map((_, idx) => (
+                <span
+                  key={idx}
+                  className="inline-block h-6 w-28 shrink-0 animate-pulse rounded-full border border-white/[0.06] bg-white/[0.04] sm:h-7"
+                />
+              ))}
+            </div>
+          ) : (
+            <p className="min-w-0 flex-1 truncate px-3 text-[11px] text-fg-subtle sm:px-4">
+              {data?.message || 'Market data unavailable'}
+            </p>
+          )
         ) : (
           <Marquee
             speed={28}
